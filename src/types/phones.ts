@@ -28,7 +28,7 @@ export enum Processor {
   tiger = "tiger",
 }
 
-export interface Product {
+export interface Phones {
   _id: string;
   brand_name: Brands;
   model: string;
@@ -55,4 +55,4 @@ export interface Product {
   resolution_height: number;
 }
 
-export type NewProduct = Omit<Product, "_id">;
+export type NewProduct = Omit<Phones, "_id">;

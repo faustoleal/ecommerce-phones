@@ -1,7 +1,7 @@
-import { Schema, model } from "mongoose";
-import { Os, Processor, Brands, Product } from "../types/products";
+import { Schema, model, models } from "mongoose";
+import { Os, Processor, Brands, Phones } from "../types/phones";
 
-const productsSchema = new Schema<Product>({
+const phonesSchema = new Schema<Phones>({
   brand_name: {
     type: String,
     enum: Object.values(Brands),
@@ -99,4 +99,5 @@ const productsSchema = new Schema<Product>({
   },
 });
 
-export const ProductModel = model<Product>("Product", productsSchema);
+export const PhonesModel =
+  models.Phones || model<Phones>("Phones", phonesSchema);

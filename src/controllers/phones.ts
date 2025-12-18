@@ -19,3 +19,22 @@ export async function listarProductos() {
     );
   }
 }
+
+export async function getPhonesById(id: string) {
+  try {
+    const phone = await PhonesModel.findById(id);
+    if (!phone) {
+      return NextResponse.json(
+        { mesagge: `No se encotro producto con id: ${id}` },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json(phone, { status: 200 });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(
+      { mesagge: "Error al obtener los productos" },
+      { status: 500 }
+    );
+  }
+}

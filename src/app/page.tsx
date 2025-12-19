@@ -1,3 +1,11 @@
+import Footer from "../componets/Footer";
+import Navbar from "../componets/Navbar";
+
 export default function Home() {
-  return <h1>Hola Mundo Devuelta</h1>;
+  return (
+    <>
+      <Navbar />
+      <Footer />
+    </>
+  );
 }

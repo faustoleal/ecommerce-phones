@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Info de la companía */}
           <div>
-            <div className="flex item-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-4">
               <Phone className="h-5 w-5 text-[#6366F1]" />
               <span className="text-lg font-mediun text-white">Cellphones</span>
             </div>

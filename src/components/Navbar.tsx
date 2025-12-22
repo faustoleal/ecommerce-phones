@@ -3,9 +3,9 @@ import { Phone, Moon, ShoppingCart, Menu } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <header className="relative sticky top-0 z-50 w-full border-b  bg-black">
+    <nav className="sticky top-0 z-50 w-full border-b  bg-black">
       <div className="container mx-auto px-5">
-        <div className="flex h-16 item-center justify-between">
+        <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Phone className="h-6 w-6 text-[#6366F1]" />
             <span className="text-xl font-medium  text-white">CellPhones</span>
@@ -38,7 +38,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </header>
+    </nav>
   );
 };
 

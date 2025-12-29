@@ -2,7 +2,7 @@ import Card from "@/src/components/Card";
 import Input from "@/src/components/Input";
 import Label from "@/src/components/Label";
 import Textaerea from "@/src/components/Textarea";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 
 const Contacto = () => {
   return (
@@ -14,7 +14,7 @@ const Contacto = () => {
             ¿Tienes alguna pregunta o consulta? Estamos aquí para ayudarte
           </p>
         </header>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Contacto Info */}
           <section className="space-y-6">
             <Card
@@ -44,8 +44,8 @@ const Contacto = () => {
           </section>
           {/* Formulario */}
           <div className="lg:col-span-2">
-            <div className="border p-4 rounded-md  mx-auto">
-              <h2 className="mb-3 py-4 font-medium">Envíanos un mensaje</h2>
+            <div className="flex flex-col gap-6 border p-6 rounded-xl shadow-sm">
+              <h2 className="py-2 font-semibold">Envíanos un mensaje</h2>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -85,6 +85,17 @@ const Contacto = () => {
                     required
                   />
                 </div>
+                <button
+                  type="submit"
+                  className=" flex align-center py-3 justify-center w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white font-medium rounded-xl"
+                >
+                  <Send className="mr-2 h-5 w-5" />
+                  Enviar mensaje
+                </button>
+
+                <p className="text-sm text-muted-foreground text-center">
+                  Te responderemos dentro de las próximas 24 horas
+                </p>
               </form>
             </div>
           </div>

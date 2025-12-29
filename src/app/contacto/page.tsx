@@ -1,4 +1,7 @@
 import Card from "@/src/components/Card";
+import Input from "@/src/components/Input";
+import Label from "@/src/components/Label";
+import Textaerea from "@/src/components/Textarea";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 const Contacto = () => {
@@ -39,6 +42,52 @@ const Contacto = () => {
               ]}
             />
           </section>
+          {/* Formulario */}
+          <div className="lg:col-span-2">
+            <div className="border p-4 rounded-md  mx-auto">
+              <h2 className="mb-3 py-4 font-medium">Envíanos un mensaje</h2>
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Nombre completo:</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email:</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="johndoe@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="telefono">Teléfono:</Label>
+                  <Input
+                    id="telefono"
+                    type="tel"
+                    placeholder="+54 9 011-12345678"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="mensaje">Mensaje</Label>
+                  <Textaerea
+                    id="mensaje"
+                    placeholder="Escribe tu mensaje aquí..."
+                    rows={6}
+                    required
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>

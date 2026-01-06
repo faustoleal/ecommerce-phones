@@ -1,9 +1,9 @@
 import React from "react";
 
-const Label = ({ ...props }: React.ComponentProps<"label">) => {
+const Label = ({ className, ...props }: React.ComponentProps<"label">) => {
   return (
     <label
-      className="flex items-center gap-2 text-md pl-1 font-medium"
+      className={`flex items-center gap-2 text-sm pl-1 ${className}`}
       {...props}
     />
   );

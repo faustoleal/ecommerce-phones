@@ -7,7 +7,9 @@ const FilterSection = () => {
     <div className="space-y-6">
       {/* Search */}
       <div className="space-y-2">
-        <Label htmlFor="search">Buscar</Label>
+        <Label htmlFor="search" className="font-medium">
+          Buscar
+        </Label>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -19,7 +21,7 @@ const FilterSection = () => {
       </div>
       {/* Marcas */}
       <div className="space-y-3">
-        <Label>Marca</Label>
+        <Label className="font-medium">Marca</Label>
         <div className="flex items-center space-x-2">
           <input id="apple" type="checkbox" />
           <Label htmlFor="apple">Apple</Label>
@@ -35,7 +37,9 @@ const FilterSection = () => {
       </div>
       {/* Precio */}
       <div className="space-y-3">
-        <Label htmlFor="price">Precio: $0 - $3000</Label>
+        <Label htmlFor="price" className="font-medium">
+          Precio: $0 - $3000
+        </Label>
         <input
           id="price"
           type="range"

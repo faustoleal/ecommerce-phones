@@ -49,7 +49,9 @@ const Contacto = () => {
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nombre completo:</Label>
+                    <Label htmlFor="name" className="font-medium">
+                      Nombre completo:
+                    </Label>
                     <Input
                       id="name"
                       type="text"
@@ -58,7 +60,9 @@ const Contacto = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email:</Label>
+                    <Label htmlFor="email" className="font-medium">
+                      Email:
+                    </Label>
                     <Input
                       id="email"
                       type="email"
@@ -68,7 +72,9 @@ const Contacto = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="telefono">Teléfono:</Label>
+                  <Label htmlFor="telefono" className="font-medium">
+                    Teléfono:
+                  </Label>
                   <Input
                     id="telefono"
                     type="tel"
@@ -77,7 +83,9 @@ const Contacto = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="mensaje">Mensaje</Label>
+                  <Label htmlFor="mensaje" className="font-medium">
+                    Mensaje
+                  </Label>
                   <Textaerea
                     id="mensaje"
                     placeholder="Escribe tu mensaje aquí..."
@@ -87,7 +95,7 @@ const Contacto = () => {
                 </div>
                 <button
                   type="submit"
-                  className=" flex align-center py-3 justify-center w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white font-medium rounded-xl"
+                  className="flex align-center py-2 items-center justify-center w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white font-sm rounded-md"
                 >
                   <Send className="mr-2 h-5 w-5" />
                   Enviar mensaje

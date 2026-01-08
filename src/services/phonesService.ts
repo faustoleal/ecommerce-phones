@@ -1,6 +1,10 @@
 import { Phones } from "../types/phones";
 
-export async function fecthDestacados(): Promise<Phones[]> {
+export async function fecthDestacados(): Promise<{
+  apple: Phones[];
+  samsung: Phones[];
+  xiaomi: Phones[];
+}> {
   const res = await fetch("api/phones/destacados", {
     method: "GET",
     headers: { "Content-Type": "application/json" },

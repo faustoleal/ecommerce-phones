@@ -1,6 +1,7 @@
 import { ArrowRight, Shield, Truck, Zap } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import Destacados from "../components/destacados/Destacados";
 
 export default function Home() {
   return (
@@ -86,6 +87,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Destacados */}
+
+      <Destacados />
+
       {/* Ver productos section */}
       <section className="py-20 bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] text-white">
         <div className="container mx-auto px-5 text-center">

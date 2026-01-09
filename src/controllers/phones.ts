@@ -1,16 +1,29 @@
 import { NextResponse } from "next/server";
 import { PhonesModel } from "../models/phones";
 
-export async function listarProductos() {
+export async function listarProductos(req: Request) {
   try {
-    const products = await PhonesModel.find();
+    const { searchParams } = new URL(req.url);
+    const page = parseInt(searchParams.get("page") || "1", 10);
+
+    const limit = 12;
+    const skip = (page - 1) * limit;
+
+    const products = await PhonesModel.find().skip(skip).limit(limit);
+
+    const total = await PhonesModel.countDocuments();
+    const totalPages = Math.ceil(total / limit);
+
     if (products.length === 0) {
       return NextResponse.json(
         { message: "No hay datos en la base" },
         { status: 400 }
       );
     }
-    return NextResponse.json(products, { status: 200 });
+    return NextResponse.json(
+      { page, totalPages, totalPhones: total, products },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
     return NextResponse.json(

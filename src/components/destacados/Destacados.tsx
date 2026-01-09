@@ -26,21 +26,21 @@ const Destacados = () => {
         titulo="Apple"
         subtitulo="La innovación en su máxima expresión"
         productos={applePhones}
-        img="/iphone14.jfif"
+        img="/iphone-15-pro-max-titanium.png"
       />
 
       <DestacadosSection
         titulo="Samsung"
         subtitulo="Potencia y diseños unidos"
         productos={samsungPhones}
-        img="/samsungS23.jpeg"
+        img="/samsung-galaxy-s24-ultra-black.jpg"
       />
 
       <DestacadosSection
         titulo="Xiaomi"
         subtitulo="Mejor precio, mejor calidad"
         productos={xiaomiPhones}
-        img="/xiaomiredminote12proplus.jfif"
+        img="/xiaomi-redmi-note-13-pro-blue.jpg"
       />
     </>
   );

@@ -23,7 +23,7 @@ const DestacadosSection = ({
             <p className="text-muted-foreground">{subtitulo}</p>
           </div>
           <button className="text-[#6366F1] hover:text-[#8B5CF6]">
-            <Link href="">
+            <Link href="" className="flex items-center">
               Ver más <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </button>
@@ -36,23 +36,24 @@ const DestacadosSection = ({
                   <div className="aspect-square bg-muted relative overflow-hidden">
                     <Image
                       fill
+                      sizes="{max-width:481px} {max-height: 481px}"
                       src={img}
                       alt={producto.model}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-medium mb-1 text-balance">
-                    {producto.model}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    {producto.internal_memory}GB • {producto.ram_capacity}GB
-                  </p>
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl font-medium text-[#6366F1]">
-                      ${producto.price}
-                    </span>
+                  <div className="p-5">
+                    <h3 className="font-medium mb-1 text-balance">
+                      {producto.model}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      {producto.internal_memory}GB • {producto.ram_capacity}GB
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl font-medium text-[#6366F1]">
+                        ${producto.price}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

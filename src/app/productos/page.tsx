@@ -1,4 +1,5 @@
 import FilterSection from "@/src/components/FilterSection";
+import PhoneSection from "@/src/components/phones/PhoneSection";
 import { Filter } from "lucide-react";
 
 const Productos = () => {
@@ -20,6 +21,7 @@ const Productos = () => {
               <FilterSection />
             </div>
           </aside>
+          <PhoneSection />
         </div>
       </div>
     </div>

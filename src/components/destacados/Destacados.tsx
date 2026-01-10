@@ -1,14 +1,14 @@
 "use client";
 
 import { fecthDestacados } from "@/src/services/phonesService";
-import { Phones } from "@/src/types/phones";
+import { Phone } from "@/src/types/phones";
 import { useEffect, useState } from "react";
 import DestacadosSection from "./DestacadosSection";
 
 const Destacados = () => {
-  const [applePhones, setApplePhones] = useState<Phones[]>([]);
-  const [samsungPhones, setSamsungPhones] = useState<Phones[]>([]);
-  const [xiaomiPhones, setXiaomiPhones] = useState<Phones[]>([]);
+  const [applePhones, setApplePhones] = useState<Phone[]>([]);
+  const [samsungPhones, setSamsungPhones] = useState<Phone[]>([]);
+  const [xiaomiPhones, setXiaomiPhones] = useState<Phone[]>([]);
 
   useEffect(() => {
     fecthDestacados()

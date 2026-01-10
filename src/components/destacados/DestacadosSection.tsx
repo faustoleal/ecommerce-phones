@@ -1,4 +1,4 @@
-import { Phones } from "@/src/types/phones";
+import { Phone } from "@/src/types/phones";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,7 @@ const DestacadosSection = ({
 }: {
   titulo: string;
   subtitulo: string;
-  productos: Phones[];
+  productos: Phone[];
   img: string;
 }) => {
   return (

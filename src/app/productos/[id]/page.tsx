@@ -1,9 +1,10 @@
-const OnePhone = () => {
-  return (
-    <>
-      <h1>One Phone</h1>
-    </>
-  );
+import ProductosByIdPage from "@/src/components/productos/ProductosByIdPage";
+
+const ProductosByID = async ({ params }: { params: { id: string } }) => {
+  const { id } = await params;
+  console.log(id);
+
+  return <ProductosByIdPage id={id} />;
 };
 
-export default OnePhone;
+export default ProductosByID;

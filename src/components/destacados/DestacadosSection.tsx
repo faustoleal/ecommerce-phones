@@ -36,10 +36,10 @@ const DestacadosSection = ({
                   <div className="aspect-square bg-muted relative overflow-hidden">
                     <Image
                       fill
-                      sizes="{max-width:481px} {max-height: 481px}"
+                      sizes="(max-width:481px) (max-height: 481px)"
                       src={img}
                       alt={producto.model}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                   <div className="p-5">

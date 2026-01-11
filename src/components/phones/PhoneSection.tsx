@@ -26,7 +26,7 @@ const PhoneSection = () => {
           <p className="text-muted-foreground mb-4">
             No se encontraron productos
           </p>
-          <button className="bg-black text-white border border-border h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none ">
+          <button className="bg-black text-white border border-border h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none">
             Limpiar filtros
           </button>
         </div>

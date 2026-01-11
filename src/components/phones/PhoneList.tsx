@@ -8,7 +8,6 @@ type PhoneListProps = {
 };
 
 const PhoneList: React.FC<PhoneListProps> = ({ productos }) => {
-  console.log(productos);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
       {productos.map((el) => (
@@ -18,11 +17,11 @@ const PhoneList: React.FC<PhoneListProps> = ({ productos }) => {
               <div className="aspect-square bg-muted relative overflow-hidden">
                 <Image
                   fill
-                  sizes="{max-width:481px} {max-height: 481px}"
+                  sizes="(max-width:481px) (max-height: 481px)"
                   src="/iphone-15-pro-max-titanium.png"
                   alt={el.model}
                   loading="eager"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover"
                 ></Image>
               </div>
               <div className="p-5">

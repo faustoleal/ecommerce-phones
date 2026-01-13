@@ -2,6 +2,7 @@ import { Phone } from "@/src/types/phones";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import { Card, CardContent } from "../Card";
 
 type PhoneListProps = {
   productos: Phone[];
@@ -12,8 +13,8 @@ const PhoneList: React.FC<PhoneListProps> = ({ productos }) => {
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
       {productos.map((el) => (
         <Link key={el._id} href={`/productos/${el._id}`}>
-          <div className="group flex flex-col gap-6 rounded-xl  py-6 shadow-sm overflow-hidden border border-border hover:border-[#6366F1] transition-colors h-full">
-            <div className="p-0">
+          <Card className="group overflow-hidden border border-border hover:border-[#6366F1] transition-colors h-full">
+            <CardContent className="p-0">
               <div className="aspect-square bg-muted relative overflow-hidden">
                 <Image
                   fill
@@ -41,8 +42,8 @@ const PhoneList: React.FC<PhoneListProps> = ({ productos }) => {
                   Stock: 5 unidades
                 </p>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </Link>
       ))}
     </div>

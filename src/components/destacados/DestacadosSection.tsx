@@ -2,6 +2,7 @@ import { Phone } from "@/src/types/phones";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Card, CardContent } from "../Card";
 
 const DestacadosSection = ({
   titulo,
@@ -30,9 +31,9 @@ const DestacadosSection = ({
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {productos.map((producto) => (
-            <Link href="/" key={producto._id}>
-              <div className=" group flex flex-col gap-6 rounded-xl border py-6 shadow-sm overflow-hidden border border-border hover:border-[#6366F1] transition-colors">
-                <div className="p-0">
+            <Link href={`/productos/${producto._id}`} key={producto._id}>
+              <Card className="group overflow-hidden border border-border hover:border-[#6366F1] transition-colors">
+                <CardContent className="p-0">
                   <div className="aspect-square bg-muted relative overflow-hidden">
                     <Image
                       fill
@@ -55,8 +56,8 @@ const DestacadosSection = ({
                       </span>
                     </div>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </Link>
           ))}
         </div>

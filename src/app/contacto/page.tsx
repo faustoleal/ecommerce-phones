@@ -1,4 +1,4 @@
-import Card from "@/src/components/Card";
+import { Card, CardContent } from "@/src/components/Card";
 import Input from "@/src/components/Input";
 import Label from "@/src/components/Label";
 import Textaerea from "@/src/components/Textarea";
@@ -17,31 +17,86 @@ const Contacto = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Contacto Info */}
           <section className="space-y-6">
-            <Card
-              icon={<Phone className="h-6 w-6 text-[#6366F1]" />}
-              title="Teléfono"
-              info={["+1 234 567 890", "+1 234 567 891"]}
-            />
-            <Card
-              icon={<Mail className="h-6 w-6 text-[#06B6D4]" />}
-              title="Email"
-              info={["info@cellphones.com", "support@cellphones.com"]}
-            />
-            <Card
-              icon={<MapPin className="h-6 w-6 text-[#8B5CF6]" />}
-              title="Dirreción"
-              info={["Av. Principal 123", "Ciudad, País 12345"]}
-            />
-            <Card
-              icon={<Clock className="h-6 w-6 text-[#DF3F40]" />}
-              title="Horario"
-              info={[
-                "Lunes - Viernes: 9:00 - 18:00",
-                "Sábado: 10:00 - 14:00",
-                "Domingo: Cerrado",
-              ]}
-            />
+            <Card className="border border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-[#6366F1]/10 rounded-lg">
+                    <Phone className="h-6 w-6 text-[#6366F1]" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-1">Teléfono</h3>
+                    <p className="text-sm text-muted-foreground">
+                      +1 234 567 890
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      +1 234 567 891
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-[#06B6D4]/10 rounded-lg">
+                    <Mail className="h-6 w-6 text-[#06B6D4]" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-1">Email</h3>
+                    <p className="text-sm text-muted-foreground">
+                      info@cellphones.com
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      support@cellphones.com
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-[#8B5CF6]/10 rounded-lg">
+                    <MapPin className="h-6 w-6 text-[#8B5CF6]" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-1">Dirección</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Av. Principal 123
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Ciudad, País 12345
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-[#DF3F40]/10 rounded-lg">
+                    <Clock className="h-6 w-6 text-[#DF3F40]" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-1">Horario</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Lunes - Viernes: 9:00 - 18:00
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Sábado: 10:00 - 14:00
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Domingo: Cerrado
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </section>
+
           {/* Formulario */}
           <div className="lg:col-span-2">
             <div className="flex flex-col gap-6 border p-6 rounded-xl shadow-sm">

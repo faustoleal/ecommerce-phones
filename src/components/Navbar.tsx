@@ -41,7 +41,7 @@ const Navbar = () => {
               <ShoppingCart className="h-5 w-5" />
             </div>
             <div className="hidden md:flex bg-[#6366F1] hover:bg-[#8B5CF6] text-white py-1 px-3 rounded-sm">
-              Iniciar sesión
+              <Link href="/login">Iniciar sesión</Link>
             </div>
             <div className="md:hidden">
               <Menu className="h5 w-5" />

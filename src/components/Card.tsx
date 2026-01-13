@@ -1,29 +1,40 @@
 import React from "react";
 
-type CardProps = {
-  icon: React.ReactNode;
-  title: string;
-  info: string[];
-};
-
-const Card: React.FC<CardProps> = ({ icon, title, info }) => {
+const Card = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
-    <article className="flex flex-col gap-6 border py-6 rounded-xl shadow-sm">
-      <div className="p-6">
-        <div className="flex items-start gap-4">
-          <div className="p-3 bg-[#6366F1]/10 rounded-lg">{icon}</div>
-          <div>
-            <h3 className="font-medium mb-1">{title}</h3>
-            {info.map((el, i) => (
-              <p key={i} className="text-sm text-muted-foreground text-balance">
-                {el}
-              </p>
-            ))}
-          </div>
-        </div>
-      </div>
-    </article>
+    <div
+      className={`bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm ${className}`}
+      {...props}
+    />
   );
 };
 
-export default Card;
+const CardHeader = ({ className, ...props }: React.ComponentProps<"div">) => {
+  return (
+    <div
+      className={`grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 ${className}`}
+      {...props}
+    />
+  );
+};
+
+const CardTitle = ({ className, ...props }: React.ComponentProps<"div">) => {
+  return (
+    <div className={`leading-none font-semibold ${className}`} {...props} />
+  );
+};
+
+const CardDescription = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
+  return (
+    <div className={`text-muted-foreground text-sm ${className}`} {...props} />
+  );
+};
+
+const CardContent = ({ className, ...props }: React.ComponentProps<"div">) => {
+  return <div className={`px-6 ${className}`} {...props} />;
+};
+
+export { Card, CardHeader, CardTitle, CardDescription, CardContent };

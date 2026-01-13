@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent } from "../Card";
+import Button from "../Button";
 
 const DestacadosSection = ({
   titulo,
@@ -23,11 +24,11 @@ const DestacadosSection = ({
             <h2 className="text-3xl font-medium mb-2">{titulo}</h2>
             <p className="text-muted-foreground">{subtitulo}</p>
           </div>
-          <button className="text-[#6366F1] hover:text-[#8B5CF6]">
-            <Link href="" className="flex items-center">
+          <Button className="text-[#6366F1] hover:text-[#8B5CF6] h-9 px-4 py-2">
+            <Link href="" className="inline-flex items-center">
               Ver más <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
-          </button>
+          </Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {productos.map((producto) => (

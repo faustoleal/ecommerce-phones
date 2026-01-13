@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import RatingEstrellas from "../RatingEstrellas";
+import Button from "../Button";
 
 const ProductosByIdPage = ({ id }: { id: string }) => {
   const [producto, setProducto] = useState<Phone | undefined>(undefined);
@@ -23,9 +24,9 @@ const ProductosByIdPage = ({ id }: { id: string }) => {
         <div className="text-center">
           <h1 className="text-2xl font-medium mb-4">Producto no encontrado</h1>
           <Link href="/productos">
-            <button className="bg-black text-white border border-border h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2">
               Volver a productos
-            </button>
+            </Button>
           </Link>
         </div>
       </div>
@@ -36,8 +37,8 @@ const ProductosByIdPage = ({ id }: { id: string }) => {
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-5">
         <Link href="/productos">
-          <button className="bg-black text-white border border-border h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none mb-6">
-            <ArrowLeft className="mr-4 h-4 w-4" />
+          <button className="h-9 px-4 py-2 mb-6 ">
+            <ArrowLeft className="mr-4 h-4 w-4 inline-flex text-center" />
             Volver
           </button>
         </Link>
@@ -172,18 +173,14 @@ const ProductosByIdPage = ({ id }: { id: string }) => {
             <div className="space-y-3">
               <div className="flex flex-col md:flex-row items-center gap-4">
                 <div className="flex items-center justify-center border border-border rounded-lg w-full md:w-auto">
-                  <button className="h-8 px-4 inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none">
-                    -
-                  </button>
+                  <Button className="h-8 rounded-md gap-1.5 px-4">-</Button>
                   <span className="px-6 font-medium">0</span>
-                  <button className="h-8 px-4 inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md text-sm font-medium outline-none">
-                    +
-                  </button>
+                  <Button className="h-8 rounded-md gap-1.5 px-4">+</Button>
                 </div>
-                <button className="flex-1 w-full md:w-auto bg-[#6366F1] hover:bg-[#8B5CF6] text-white font-medium text-white border border-border h-10 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none">
+                <Button className="flex-1 bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-9 px-4 py-2">
                   <ShoppingCart className="mr-2 h-5 w-5" />
                   Agregar al carrito
-                </button>
+                </Button>
               </div>
             </div>
 

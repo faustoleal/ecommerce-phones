@@ -2,6 +2,7 @@ import { ArrowRight, Shield, Truck, Zap } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Destacados from "../components/destacados/Destacados";
+import Button from "../components/Button";
 
 export default function Home() {
   return (
@@ -22,15 +23,15 @@ export default function Home() {
                 más reconocidas. Calidad garantizada y envío gratis.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="bg-white text-[#6366F1] hover:bg-white/90 font-medium py-2 px-4 rounded-md">
-                  <Link href="/" className="inline-flex items-center">
+                <Button className="bg-white text-[#6366F1] hover:bg-white/90 font-medium h-10 rounded-md px-6">
+                  <Link href="/productos" className="inline-flex text-center">
                     Ver todos los productos
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
-                </button>
-                <button className="border-1 border-white text-white hover:bg-white/10 hover:text-white bg-transparent py-2 px-4 rounded-md">
-                  <Link href="/">Contactar</Link>
-                </button>
+                </Button>
+                <Button className="border-1 border-white text-white hover:bg-white/10 hover:text-white bg-transparent py-2 px-4 rounded-md">
+                  <Link href="/contacto">Contactar</Link>
+                </Button>
               </div>
             </div>
             <div className="relative h-[400px] lg:h-[500px]">
@@ -100,11 +101,11 @@ export default function Home() {
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto text-pretty">
             Explora nuestro catálogo completo con las mejores marcas
           </p>
-          <button className="bg-white text-[#6366F1] hover:bg-white/90 font-medium px-4 py-2 rounded-md">
+          <Button className="bg-white text-[#6366F1] hover:bg-white/90 font-medium h-10 rounded-md px-6">
             <Link href="/" className="flex items-center">
               Ver todos los productos <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
-          </button>
+          </Button>
         </div>
       </section>
     </div>

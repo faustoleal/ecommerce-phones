@@ -2,6 +2,14 @@ import Link from "next/link";
 import { Phone, LogIn } from "lucide-react";
 import Input from "@/src/components/Input";
 import Label from "@/src/components/Label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/src/components/Card";
+import Button from "@/src/components/Button";
 
 const Login = () => {
   return (
@@ -18,14 +26,14 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="group flex flex-col gap-6 rounded-xl  py-6 shadow-sm overflow-hidden border border-border hover:border-[#6366F1] transition-colors h-full bg-white">
-          <div className="grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has">
-            <div className="leading-none font-semibold">Credenciales</div>
-            <div className="text-muted-foreground text-sm">
-              Ingresa tu email y contraseña
-            </div>
-          </div>
-          <div className="px-6">
+        <Card className="border border-border">
+          <CardHeader>
+            <CardTitle className="leading-none font-semibold">
+              Credenciales
+            </CardTitle>
+            <CardDescription>Ingresa tu email y contraseña</CardDescription>
+          </CardHeader>
+          <CardContent className="px-6">
             <form className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
@@ -48,15 +56,15 @@ const Login = () => {
                 />
               </div>
 
-              <button
+              <Button
                 type="submit"
-                className="h-9 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white"
+                className="w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-9 px-4 py-2"
               >
                 <>
                   <LogIn className="mr-2 h-4 w-4" />
                   Iniciar sesión
                 </>
-              </button>
+              </Button>
             </form>
 
             <div className="mt-6 p-4 bg-muted/50 rounded-lg border border-border">
@@ -72,8 +80,8 @@ const Login = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         <p className="text-center mt-6 text-sm text-muted-foreground">
           ¿No tienes una cuenta?{" "}

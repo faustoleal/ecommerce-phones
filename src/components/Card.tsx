@@ -34,7 +34,7 @@ const CardDescription = ({
 };
 
 const CardContent = ({ className, ...props }: React.ComponentProps<"div">) => {
-  return <div className={`px-6 ${className}`} {...props} />;
+  return <div className={`${className}`} {...props} />;
 };
 
 export { Card, CardHeader, CardTitle, CardDescription, CardContent };

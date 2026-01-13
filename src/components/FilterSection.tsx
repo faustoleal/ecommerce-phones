@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import Label from "./Label";
 import Input from "./Input";
+import Button from "./Button";
 
 const FilterSection = () => {
   return (
@@ -50,12 +51,12 @@ const FilterSection = () => {
         />
       </div>
 
-      <button
+      <Button
         type="submit"
-        className="align-center py-2 w-full bg-transparent font-medium rounded-md border"
+        className="w-full bg-transparent h-9 px-4 py-2 border border-border"
       >
         Limpiar filtros
-      </button>
+      </Button>
     </div>
   );
 };

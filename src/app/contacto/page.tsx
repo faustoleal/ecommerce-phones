@@ -1,4 +1,10 @@
-import { Card, CardContent } from "@/src/components/Card";
+import Button from "@/src/components/Button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/src/components/Card";
 import Input from "@/src/components/Input";
 import Label from "@/src/components/Label";
 import Textaerea from "@/src/components/Textarea";
@@ -99,68 +105,72 @@ const Contacto = () => {
 
           {/* Formulario */}
           <div className="lg:col-span-2">
-            <div className="flex flex-col gap-6 border p-6 rounded-xl shadow-sm">
-              <h2 className="py-2 font-semibold">Envíanos un mensaje</h2>
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="border border-border">
+              <CardHeader>
+                <CardTitle>Envíanos un mensaje</CardTitle>
+              </CardHeader>
+              <CardContent className="px-6">
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="font-medium">
+                        Nombre completo:
+                      </Label>
+                      <Input
+                        id="name"
+                        type="text"
+                        placeholder="John Doe"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="font-medium">
+                        Email:
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="johndoe@example.com"
+                        required
+                      />
+                    </div>
+                  </div>
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="font-medium">
-                      Nombre completo:
+                    <Label htmlFor="telefono" className="font-medium">
+                      Teléfono:
                     </Label>
                     <Input
-                      id="name"
-                      type="text"
-                      placeholder="John Doe"
+                      id="telefono"
+                      type="tel"
+                      placeholder="+54 9 011-12345678"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="font-medium">
-                      Email:
+                    <Label htmlFor="mensaje" className="font-medium">
+                      Mensaje
                     </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="johndoe@example.com"
+                    <Textaerea
+                      id="mensaje"
+                      placeholder="Escribe tu mensaje aquí..."
+                      rows={6}
                       required
                     />
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="telefono" className="font-medium">
-                    Teléfono:
-                  </Label>
-                  <Input
-                    id="telefono"
-                    type="tel"
-                    placeholder="+54 9 011-12345678"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="mensaje" className="font-medium">
-                    Mensaje
-                  </Label>
-                  <Textaerea
-                    id="mensaje"
-                    placeholder="Escribe tu mensaje aquí..."
-                    rows={6}
-                    required
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="flex align-center py-2 items-center justify-center w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white font-sm rounded-md"
-                >
-                  <Send className="mr-2 h-5 w-5" />
-                  Enviar mensaje
-                </button>
+                  <Button
+                    type="submit"
+                    className="w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-10 rounded-md px-6"
+                  >
+                    <Send className="mr-2 h-5 w-5" />
+                    Enviar mensaje
+                  </Button>
 
-                <p className="text-sm text-muted-foreground text-center">
-                  Te responderemos dentro de las próximas 24 horas
-                </p>
-              </form>
-            </div>
+                  <p className="text-sm text-muted-foreground text-center">
+                    Te responderemos dentro de las próximas 24 horas
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

@@ -20,6 +20,7 @@ interface UserContextType {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   login: (params: { email: string; password: string }) => Promise<void>;
+  isAdmin: () => void;
   logout: () => void;
   addItem: (productoId: string, cantidad?: number) => void;
   removeItem: (productoId: string) => void;
@@ -68,6 +69,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setCurrentUser(user);
   };
 
+  const isAdmin = (): boolean => {
+    if (!currentUser) return false;
+
+    return currentUser.role === "admin";
+  };
+
   const addItem = (productoId: string, cantidad: number = 1) => {
     addItemToCart(currentUser, (u) => setCurrentUser(u), productoId, cantidad);
   };
@@ -86,6 +93,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     loading,
     setLoading,
     login,
+    isAdmin,
     logout,
     addItem,
     removeItem,
@@ -95,10 +103,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
 };
 
-export const useAuth = () => {
+export const useApp = () => {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error("useAuth debe usarse dentro de AuthProvider");
+    throw new Error("useApp debe usarse dentro de UserProvider");
   }
   return context;
 };

@@ -21,6 +21,12 @@ const userSchema = new Schema<User>({
     enum: ["admin", "user"],
     default: "user",
   },
+  carrito: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: "Phone", required: true },
+      cantidad: { type: Number, required: true, min: 1 },
+    },
+  ],
 });
 
 export const UserModel = models.User || model<User>("User", userSchema);

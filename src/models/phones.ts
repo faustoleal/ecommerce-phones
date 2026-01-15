@@ -99,5 +99,4 @@ const phonesSchema = new Schema<Phone>({
   },
 });
 
-export const PhonesModel =
-  models.Phones || model<Phone>("Phones", phonesSchema);
+export const PhonesModel = models.Phones || model<Phone>("Phone", phonesSchema);

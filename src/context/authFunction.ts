@@ -1,4 +1,4 @@
-import { CartItem, User, UserRole } from "@/src/types/user";
+import { CartItem, DecodeUser, UserRole } from "@/src/types/user";
 import { jwtDecode } from "jwt-decode";
 
 interface DecodedToken {
@@ -10,7 +10,7 @@ interface DecodedToken {
   carrito: CartItem[];
 }
 
-export const decodedToken = (token: string): User | null => {
+export const decodedToken = (token: string): DecodeUser | null => {
   try {
     const decoded = jwtDecode<DecodedToken>(token);
     return {

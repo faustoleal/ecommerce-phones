@@ -24,7 +24,7 @@ export async function getUsuarios() {
 }
 
 export async function crearUsuario(nuevoUsuario: NewUser) {
-  const { name, username, email, password } = nuevoUsuario;
+  const { name, username, email, password, role } = nuevoUsuario;
   try {
     const existingUser = await UserModel.findOne({
       $or: [{ email }, { username }],
@@ -44,7 +44,7 @@ export async function crearUsuario(nuevoUsuario: NewUser) {
       username,
       email,
       password: hashedPassword,
-      role: "user",
+      role: role || "user",
       carrito: [],
     });
 

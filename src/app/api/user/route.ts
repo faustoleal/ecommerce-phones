@@ -8,8 +8,8 @@ export async function GET() {
 
 export async function POST(req: Request) {
   connectDB();
-  const { name, username, email, password } = await req.json();
+  const { name, username, email, password, role } = await req.json();
 
-  const nuevoUsuario = { name, username, email, password };
+  const nuevoUsuario = { name, username, email, password, role };
   return crearUsuario(nuevoUsuario);
 }

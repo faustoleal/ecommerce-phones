@@ -17,4 +17,4 @@ export interface User {
 
 export type DecodeUser = Omit<User, "password">;
 
-export type NewUser = Omit<User, "_id" | "role" | "carrito">;
+export type NewUser = Omit<User, "_id" | "carrito">;

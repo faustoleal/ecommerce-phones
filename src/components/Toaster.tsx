@@ -1,5 +1,6 @@
 import React from "react";
-import { ToastVariant } from "../hooks/use-toast";
+
+export type ToastVariant = "success" | "error";
 
 interface ToastProps {
   variant: ToastVariant;
@@ -10,7 +11,7 @@ interface ToastProps {
 const Toaster: React.FC<ToastProps> = ({ variant, title, description }) => {
   const variantStyles: Record<ToastVariant, string> = {
     success: "border bg-background text-foreground",
-    error: "border-destructive bg-destructive text-destructive-foreground",
+    error: " border border-destructive bg-destructive-foreground text-white",
   };
 
   return (

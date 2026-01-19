@@ -10,8 +10,11 @@ export interface User {
   name: string;
   username: string;
   email: string;
+  password: string;
   role: UserRole;
   carrito: CartItem[];
 }
 
-export type NewUser = Omit<User, "_id">;
+export type DecodeUser = Omit<User, "password">;
+
+export type NewUser = Omit<User, "_id" | "role" | "carrito">;

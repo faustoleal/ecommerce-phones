@@ -1,5 +1,5 @@
 "use client";
-import { User } from "../types/user";
+import { DecodeUser } from "../types/user";
 import {
   createContext,
   ReactNode,
@@ -15,12 +15,15 @@ import {
 } from "./cartFunction";
 
 interface UserContextType {
-  currentUser: User | null;
-  setCurrentUser: (user: User | null) => void;
+  currentUser: DecodeUser | null;
+  setCurrentUser: (user: DecodeUser | null) => void;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  login: (params: { email: string; password: string }) => Promise<void>;
-  isAdmin: () => void;
+  login: (params: {
+    email: string;
+    password: string;
+  }) => Promise<DecodeUser | null>;
+  isAdmin: () => boolean;
   logout: () => void;
   addItem: (productoId: string, cantidad?: number) => void;
   removeItem: (productoId: string) => void;
@@ -28,11 +31,11 @@ interface UserContextType {
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<DecodeUser | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -63,10 +66,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }: {
     email: string;
     password: string;
-  }) => {
+  }): Promise<DecodeUser | null> => {
     const token = await loginUser(email, password);
     const user = decodedToken(token);
     setCurrentUser(user);
+    return user;
   };
 
   const isAdmin = (): boolean => {

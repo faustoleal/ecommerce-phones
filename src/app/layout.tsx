@@ -4,8 +4,8 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { UserProvider } from "../context/UserContext";
-import { useToast } from "../hooks/use-toast";
-import Toaster from "../components/Toaster";
+import { ToastProvider } from "../context/ToastContext";
+import ToasterContainer from "../components/ToasterContainer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,29 +27,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { toasts } = useToast();
   return (
     <html lang="en">
       <UserProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
-        >
-          <div className="flex min-h-screen flex-col">
-            <div className="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]">
-              {toasts.map((t, i) => (
-                <Toaster
-                  key={i}
-                  variant={t.variant}
-                  title={t.title}
-                  description={t.description}
-                />
-              ))}
+        <ToastProvider>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
+          >
+            <div className="flex min-h-screen flex-col">
+              <ToasterContainer />
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
             </div>
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </body>
+          </body>
+        </ToastProvider>
       </UserProvider>
     </html>
   );

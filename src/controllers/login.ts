@@ -30,8 +30,10 @@ export const usuarioLogin = async (email: string, password: string) => {
         role: user.role,
         carrito: user.carrito,
       },
-      process.env.JWT_SECRET as string
+      process.env.SECRET as string
     );
+
+    console.log(token);
 
     return NextResponse.json(
       {

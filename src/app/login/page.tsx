@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { Phone, LogIn } from "lucide-react";
-import Input from "@/src/components/Input";
-import Label from "@/src/components/Label";
+import { Phone } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -9,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/Card";
-import Button from "@/src/components/Button";
+import LoginForm from "@/src/components/forms/LoginForm";
 
 const Login = () => {
   return (
@@ -34,39 +32,7 @@ const Login = () => {
             <CardDescription>Ingresa tu email y contraseña</CardDescription>
           </CardHeader>
           <CardContent className="px-6">
-            <form className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  required
-                  className="border-[#E3E6EA]"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="password">Contraseña</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  required
-                  className="border-[#E3E6EA]"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-9 px-4 py-2"
-              >
-                <>
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Iniciar sesión
-                </>
-              </Button>
-            </form>
-
+            <LoginForm />
             <div className="mt-6 p-4 bg-muted/50 rounded-lg border border-border">
               <p className="text-sm font-medium mb-2">
                 Credenciales de prueba:

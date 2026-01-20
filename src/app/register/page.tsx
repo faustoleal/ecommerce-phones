@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, UserPlus } from "lucide-react";
+import { Phone } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -7,9 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/Card";
-import Label from "@/src/components/Label";
-import Input from "@/src/components/Input";
-import Button from "@/src/components/Button";
+import CreateAccountForm from "@/src/components/forms/CreateAccountForm";
 
 const Register = () => {
   return (
@@ -34,60 +32,7 @@ const Register = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="px-6">
-            <form className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Nombre completo</Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="Juan Pérez"
-                  required
-                  className="border-[#E3E6EA]"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="tu@email.com"
-                  required
-                  className="border-[#E3E6EA]"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="password">Contraseña</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  required
-                  className="border-[#E3E6EA]"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirmar contraseña</Label>
-                <Input
-                  id="confirmPassword"
-                  type="password"
-                  placeholder="••••••••"
-                  required
-                  className="border-[#E3E6EA]"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-9 px-4 py-2"
-              >
-                <UserPlus className="mr-2 h-4 w-4" />
-                Crear cuenta
-              </Button>
-            </form>
-
+            <CreateAccountForm />
             <div className="mt-6 p-4 bg-muted/50 rounded-lg border border-border">
               <p className="text-sm text-muted-foreground">
                 Al crear una cuenta, aceptas nuestros términos y condiciones de

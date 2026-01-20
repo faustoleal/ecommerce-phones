@@ -7,6 +7,7 @@ import Input from "../Input";
 import React, { useState } from "react";
 import { useApp } from "@/src/context/UserContext";
 import { useToast } from "@/src/context/ToastContext";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
@@ -15,6 +16,7 @@ const LoginForm = () => {
 
   const { login } = useApp();
   const { toast } = useToast();
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -28,20 +30,24 @@ const LoginForm = () => {
           title: "Inicio de sesión exitoso",
           description: `Bienvenido, ${user.name}`,
         });
+        router.push("/");
       } else {
         toast({
           variant: "error",
-          title: "Error de autenticación",
-          description: "Credenciales incorrectas. Por favor, intenta de nuevo.",
+          title: "Error",
+          description: "Ocurrió un error al iniciar sesión.",
         });
       }
     } catch (err) {
       console.log(err);
       toast({
         variant: "error",
-        title: "Error",
-        description: "Ocurrió un error al iniciar sesión.",
+        title: "Error de autenticación",
+        description: "Credenciales incorrectas. Por favor, intenta de nuevo.",
       });
+
+      setEmail("");
+      setPassword("");
     } finally {
       setLoading(false);
     }

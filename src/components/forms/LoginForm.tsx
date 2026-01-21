@@ -38,12 +38,17 @@ const LoginForm = () => {
           description: "Ocurrió un error al iniciar sesión.",
         });
       }
-    } catch (err) {
-      console.log(err);
+    } catch (err: unknown) {
+      let errMsg = "Credenciales incorrectas. Por favor, intenta de nuevo.";
+
+      if (err instanceof Error) {
+        errMsg = err.message;
+      }
+
       toast({
         variant: "error",
         title: "Error de autenticación",
-        description: "Credenciales incorrectas. Por favor, intenta de nuevo.",
+        description: errMsg,
       });
 
       setEmail("");

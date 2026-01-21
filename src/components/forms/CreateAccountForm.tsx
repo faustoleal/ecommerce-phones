@@ -54,12 +54,17 @@ const CreateAccountForm = () => {
       });
 
       router.push("/login");
-    } catch (err) {
-      console.log(err);
+    } catch (err: unknown) {
+      let errMsg = "Ocurrió un error al crear la cuenta";
+
+      if (err instanceof Error) {
+        errMsg = err.message;
+      }
+
       toast({
         variant: "error",
         title: "Error",
-        description: "Ocurrió un error al crear la cuenta.",
+        description: errMsg,
       });
     } finally {
       setLoading(false);

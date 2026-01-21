@@ -8,16 +8,16 @@ export const usuarioLogin = async (email: string, password: string) => {
     const user = await UserModel.findOne({ email });
     if (!user) {
       return NextResponse.json(
-        { message: "Credenciales inválidas" },
-        { status: 404 }
+        { message: "Email incorrecto" },
+        { status: 404 },
       );
     }
 
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return NextResponse.json(
-        { message: "Credenciales inválidas" },
-        { status: 400 }
+        { message: "Contraseña incorrecta" },
+        { status: 400 },
       );
     }
 
@@ -30,7 +30,7 @@ export const usuarioLogin = async (email: string, password: string) => {
         role: user.role,
         carrito: user.carrito,
       },
-      process.env.SECRET as string
+      process.env.SECRET as string,
     );
 
     console.log(token);
@@ -47,12 +47,12 @@ export const usuarioLogin = async (email: string, password: string) => {
           carrito: user.carrito,
         },
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json(
       { message: "Error interno del servidor", err: error },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Moon, ShoppingCart, Menu, User, LogOut } from "lucide-react";
+import { Phone, Moon, ShoppingCart, User, LogOut } from "lucide-react";
 import { useApp } from "../context/UserContext";
 import Button from "./Button";
 import {
@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "./DropdownMenu";
 import { useRouter } from "next/navigation";
+import { MobileMenu, MobileMenuContent, MobileMenuTrigger } from "./MobileMenu";
 
 const Navbar = () => {
   const { currentUser, setCurrentUser, logout, isAdmin } = useApp();
@@ -23,6 +24,12 @@ const Navbar = () => {
     setCurrentUser(null);
     router.push("/login");
   }
+
+  const navLinks = [
+    { href: "/", label: "Inicio" },
+    { href: "/productos", label: "Productos" },
+    { href: "/contacto", label: "Contacto" },
+  ];
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -36,24 +43,16 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
-            <Link
-              href="/"
-              className="text-foreground/80 hover:text-foreground transition-colors font-normal"
-            >
-              Inicio
-            </Link>
-            <Link
-              href="/productos"
-              className="text-foreground/80 hover:text-foreground transition-colors font-normal"
-            >
-              Productos
-            </Link>
-            <Link
-              href="/contacto"
-              className="text-foreground/80 hover:text-foreground transition-colors font-normal"
-            >
-              Contacto
-            </Link>
+            {navLinks.map((link, i) => (
+              <Link
+                key={i}
+                href={link.href}
+                className="text-foreground/80 hover:text-foreground transition-colors font-normal"
+              >
+                {link.label}
+              </Link>
+            ))}
+
             {isAdmin() && (
               <Link
                 href="/contacto"
@@ -97,9 +96,41 @@ const Navbar = () => {
                 <Link href="/login">Iniciar sesión</Link>
               </div>
             )}
-            <div className="md:hidden">
-              <Menu className="h5 w-5" />
-            </div>
+            {/* Mobile Menu */}
+
+            <MobileMenu>
+              <MobileMenuTrigger className="md:hidden" />
+              <MobileMenuContent>
+                <div className="flex flex-col gap-4 mt-6 bg-white">
+                  {navLinks.map((link, i) => (
+                    <Link
+                      key={i}
+                      href={link.href}
+                      className="text-foreground/80 hover:text-foreground transition-colors font-normal pl-2"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+
+                  {isAdmin() && (
+                    <Link
+                      href="/contacto"
+                      className="text-[#6366F1] hover:text-[#8B5CF6] transition-colors font-medium pl-2"
+                    >
+                      Admin Panel
+                    </Link>
+                  )}
+                  {!currentUser && (
+                    <Button
+                      onClick={() => router.push("/login")}
+                      className="py-3 px-28 mt-4 mx-auto bg-[#6366F1] hover:bg-[#8B5CF6] text-white"
+                    >
+                      Iniciar sesión
+                    </Button>
+                  )}
+                </div>
+              </MobileMenuContent>
+            </MobileMenu>
           </div>
         </div>
       </div>

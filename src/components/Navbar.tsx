@@ -66,7 +66,10 @@ const Navbar = () => {
             <Button className="h-9 w-9 hover:bg-gray-100">
               <Moon className="h-5 w-5" />
             </Button>
-            <Button className="h-9 w-9 hover:bg-gray-100">
+            <Button
+              className="h-9 w-9 hover:bg-gray-100"
+              onClick={() => router.push("/carrito")}
+            >
               <ShoppingCart className="h-5 w-5" />
             </Button>
             {currentUser ? (

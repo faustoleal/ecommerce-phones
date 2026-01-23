@@ -28,7 +28,7 @@ const MobileMenuTrigger = ({
 }) => {
   return (
     <div
-      className={`px-3 py-2  rounded-md bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+      className={`px-3 py-2  rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
     >
       <Button className="h-9 w-9">
         <Menu className="h-5 w-5" onClick={() => setOpen?.(true)} />

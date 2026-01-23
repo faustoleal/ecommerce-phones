@@ -1,36 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 
-const DropdownMenu = ({ className, ...props }: React.ComponentProps<"div">) => {
+const DropdownMenu = ({ className, children }: React.ComponentProps<"div">) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div
-      className={`relative inline-block text-left ${className}`}
-      {...props}
-    />
+    <div className={`relative inline-block text-left ${className}`}>
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child)
+          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            React.cloneElement(child as React.ReactElement<any>, {
+              open,
+              setOpen,
+            })
+          : child,
+      )}
+    </div>
   );
 };
 
 const DropdownMenuTrigger = ({
   className,
-  ...props
-}: React.ComponentProps<"div">) => {
+  children,
+  setOpen,
+}: {
+  className?: string;
+  children: React.ReactNode;
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div
       className={`rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
-      {...props}
-    />
+      onClick={() => setOpen?.((prev) => !prev)}
+    >
+      {children}
+    </div>
   );
 };
 
 const DropdownMenuContent = ({
   className,
-  ...props
-}: React.ComponentProps<"div">) => {
-  return (
-    <div
-      className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black/5 focus:outline-none z-50 ${className}`}
-      {...props}
-    />
-  );
+  children,
+  open,
+}: {
+  className?: string;
+  children: React.ReactNode;
+  open?: boolean;
+}) => {
+  if (!open) return null;
+  if (open) {
+    return (
+      <div
+        className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black/5 focus:outline-none z-50 ${className}`}
+      >
+        {children}
+      </div>
+    );
+  }
 };
 
 const DropdownMenuItem = ({

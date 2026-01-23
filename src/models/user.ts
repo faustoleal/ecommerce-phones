@@ -27,7 +27,7 @@ const userSchema = new Schema<User>({
   },
   carrito: [
     {
-      productId: { type: Schema.Types.ObjectId, ref: "Phone", required: true },
+      productoId: { type: Schema.Types.ObjectId, ref: "Phone", required: true },
       cantidad: { type: Number, required: true, min: 1 },
     },
   ],

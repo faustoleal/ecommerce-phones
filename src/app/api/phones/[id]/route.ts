@@ -1,15 +1,11 @@
 import { getPhonesById } from "@/src/controllers/phones";
 import { connectDB } from "@/src/lib/db";
 
-type Params = {
-  id: string;
-};
-
 export async function GET(
   request: Request,
-  context: { params: Promise<Params> }
+  { params }: { params: { id: string } },
 ) {
-  const { id } = await context.params;
+  const { id } = await params;
 
   console.log(id);
 

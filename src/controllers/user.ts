@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { UserModel } from "../models/user";
-import { NewUser } from "../types/user";
+import { CartItem, NewUser } from "../types/user";
 import bcrypt from "bcrypt";
 
 export async function getUsuarios() {
@@ -18,6 +18,25 @@ export async function getUsuarios() {
     console.log(err);
     return NextResponse.json(
       { message: "Error al obtener usuarios" },
+      { status: 500 },
+    );
+  }
+}
+
+export async function getUserById(id: string) {
+  try {
+    const user = await UserModel.findById(id);
+    if (!user) {
+      return NextResponse.json(
+        { mesagge: `No se encontro el usuario con id: ${id}` },
+        { status: 404 },
+      );
+    }
+    return NextResponse.json(user, { status: 200 });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(
+      { mesagge: "Error al obtener los user" },
       { status: 500 },
     );
   }
@@ -62,6 +81,50 @@ export async function crearUsuario(nuevoUsuario: NewUser) {
     console.log(error);
     return NextResponse.json(
       { message: "Error interno del servidor", error },
+      { status: 500 },
+    );
+  }
+}
+
+export async function acutalizarCarrito(cart: CartItem, id: string) {
+  try {
+    const { productoId, cantidad } = cart;
+
+    if (!productoId || !cantidad || cantidad < 1) {
+      return NextResponse.json({ message: "Datos inválidos" }, { status: 400 });
+    }
+
+    const user = await UserModel.findById(id);
+    if (!user) {
+      return NextResponse.json(
+        { message: "Usuario no encontrado" },
+        { status: 404 },
+      );
+    }
+
+    const existingItem = user.carrito.find(
+      (item: CartItem) => item.productoId.toString() === productoId,
+    );
+
+    if (existingItem) {
+      existingItem.cantidad += cantidad;
+    } else {
+      user.carrito.push({ productoId, cantidad });
+    }
+
+    await user.save();
+
+    return NextResponse.json(
+      {
+        message: "Carrito actualizado correctamente",
+        carrito: user.carrito,
+      },
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Error al actualizar el carrito" },
       { status: 500 },
     );
   }

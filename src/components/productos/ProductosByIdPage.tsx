@@ -8,9 +8,21 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import RatingEstrellas from "../RatingEstrellas";
 import Button from "../Button";
+import { useApp } from "@/src/context/UserContext";
 
 const ProductosByIdPage = ({ id }: { id: string }) => {
   const [producto, setProducto] = useState<Phone | undefined>(undefined);
+  const [cantidad, setCantidad] = useState<number>(1);
+
+  const { addItem } = useApp();
+
+  function restar() {
+    if (cantidad === 1) {
+      setCantidad(1);
+    } else {
+      setCantidad(cantidad - 1);
+    }
+  }
 
   useEffect(() => {
     fetchProductosByID(id)
@@ -31,6 +43,15 @@ const ProductosByIdPage = ({ id }: { id: string }) => {
         </div>
       </div>
     );
+  }
+
+  function handleAddToCart() {
+    if (!producto?._id) {
+      console.error("Faltan datos para agregar al carrito");
+      return;
+    }
+
+    addItem(producto._id, cantidad);
   }
 
   return (
@@ -173,11 +194,24 @@ const ProductosByIdPage = ({ id }: { id: string }) => {
             <div className="space-y-3">
               <div className="flex flex-col md:flex-row items-center gap-4">
                 <div className="flex items-center justify-center border border-border rounded-lg w-full md:w-auto">
-                  <Button className="h-8 rounded-md gap-1.5 px-4">-</Button>
-                  <span className="px-6 font-medium">0</span>
-                  <Button className="h-8 rounded-md gap-1.5 px-4">+</Button>
+                  <Button
+                    className="h-8 rounded-md gap-1.5 px-4"
+                    onClick={restar}
+                  >
+                    -
+                  </Button>
+                  <span className="px-6 font-medium">{cantidad}</span>
+                  <Button
+                    className="h-8 rounded-md gap-1.5 px-4"
+                    onClick={() => setCantidad(cantidad + 1)}
+                  >
+                    +
+                  </Button>
                 </div>
-                <Button className="flex-1 bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-9 px-4 py-2">
+                <Button
+                  className="flex-1 bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-9 px-4 py-2"
+                  onClick={handleAddToCart}
+                >
                   <ShoppingCart className="mr-2 h-5 w-5" />
                   Agregar al carrito
                 </Button>

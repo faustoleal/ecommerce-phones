@@ -95,6 +95,7 @@ export async function acutalizarCarrito(cart: CartItem, id: string) {
     }
 
     const user = await UserModel.findById(id);
+
     if (!user) {
       return NextResponse.json(
         { message: "Usuario no encontrado" },
@@ -114,13 +115,12 @@ export async function acutalizarCarrito(cart: CartItem, id: string) {
 
     await user.save();
 
-    return NextResponse.json(
-      {
-        message: "Carrito actualizado correctamente",
-        carrito: user.carrito,
-      },
-      { status: 200 },
-    );
+    const populateUser = await UserModel.findById(id).populate({
+      path: "carrito.productoId",
+      select: "brand_name price model internal_memory ram_capacity",
+    });
+
+    return NextResponse.json(populateUser, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

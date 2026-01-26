@@ -5,7 +5,10 @@ import { NextResponse } from "next/server";
 
 export const usuarioLogin = async (email: string, password: string) => {
   try {
-    const user = await UserModel.findOne({ email });
+    const user = await UserModel.findOne({ email }).populate({
+      path: "carrito.productoId",
+      select: "brand_name price model internal_memory ram_capacity",
+    });
     if (!user) {
       return NextResponse.json(
         { message: "Email incorrecto" },
@@ -32,8 +35,6 @@ export const usuarioLogin = async (email: string, password: string) => {
       },
       process.env.SECRET as string,
     );
-
-    console.log(token);
 
     return NextResponse.json(
       {

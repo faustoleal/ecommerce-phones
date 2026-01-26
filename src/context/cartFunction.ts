@@ -1,29 +1,23 @@
 import { DecodeUser } from "@/src/types/user";
+import { agregarAlCarrito } from "../services/userService";
 
-export const addItemToCart = (
+export const addItemToCart = async (
   currentUser: DecodeUser | null,
   setCurrentUser: (user: DecodeUser) => void,
   productoId: string,
-  cantidad: number = 1,
+  cantidad: number,
 ) => {
   if (!currentUser) return;
 
-  const existingItem = currentUser.carrito.find(
-    (item) => item.productoId === productoId,
-  );
-
-  let updatedCart;
-  if (existingItem) {
-    updatedCart = currentUser.carrito.map((item) =>
-      item.productoId === productoId
-        ? { ...item, quantity: item.cantidad + cantidad }
-        : item,
+  try {
+    const updateCarrito = await agregarAlCarrito(
+      { productoId, cantidad },
+      currentUser._id,
     );
-  } else {
-    updatedCart = [...currentUser.carrito, { productoId, cantidad }];
+    setCurrentUser(updateCarrito);
+  } catch (err) {
+    console.error("Error al actualizar el carrito:", err);
   }
-
-  setCurrentUser({ ...currentUser, carrito: updatedCart });
 };
 
 export const removeItemFromCart = (

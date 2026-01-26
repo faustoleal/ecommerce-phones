@@ -25,7 +25,7 @@ interface UserContextType {
   }) => Promise<DecodeUser | null>;
   isAdmin: () => boolean;
   logout: () => void;
-  addItem: (productoId: string, cantidad?: number) => void;
+  addItem: (productoId: string, cantidad: number) => void;
   removeItem: (productoId: string) => void;
   clearCart: () => void;
 }
@@ -79,7 +79,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     return currentUser.role === "admin";
   };
 
-  const addItem = (productoId: string, cantidad: number = 1) => {
+  const addItem = (productoId: string, cantidad: number) => {
     addItemToCart(currentUser, (u) => setCurrentUser(u), productoId, cantidad);
   };
 

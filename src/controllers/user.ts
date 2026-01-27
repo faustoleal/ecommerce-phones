@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { UserModel } from "../models/user";
-import { CartItem, NewUser } from "../types/user";
+import { NewUser } from "../types/user";
 import bcrypt from "bcrypt";
 
 export async function getUsuarios() {
@@ -81,50 +81,6 @@ export async function crearUsuario(nuevoUsuario: NewUser) {
     console.log(error);
     return NextResponse.json(
       { message: "Error interno del servidor", error },
-      { status: 500 },
-    );
-  }
-}
-
-export async function acutalizarCarrito(cart: CartItem, id: string) {
-  try {
-    const { productoId, cantidad } = cart;
-
-    if (!productoId || !cantidad || cantidad < 1) {
-      return NextResponse.json({ message: "Datos inválidos" }, { status: 400 });
-    }
-
-    const user = await UserModel.findById(id);
-
-    if (!user) {
-      return NextResponse.json(
-        { message: "Usuario no encontrado" },
-        { status: 404 },
-      );
-    }
-
-    const existingItem = user.carrito.find(
-      (item: CartItem) => item.productoId.toString() === productoId,
-    );
-
-    if (existingItem) {
-      existingItem.cantidad += cantidad;
-    } else {
-      user.carrito.push({ productoId, cantidad });
-    }
-
-    await user.save();
-
-    const populateUser = await UserModel.findById(id).populate({
-      path: "carrito.productoId",
-      select: "brand_name price model internal_memory ram_capacity",
-    });
-
-    return NextResponse.json(populateUser, { status: 200 });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json(
-      { message: "Error al actualizar el carrito" },
       { status: 500 },
     );
   }

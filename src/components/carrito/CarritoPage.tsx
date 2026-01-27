@@ -7,9 +7,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "../Card";
+import { useToast } from "@/src/context/ToastContext";
+import { useState } from "react";
 
 const CarritoPage = () => {
-  const { currentUser } = useApp();
+  const [loading, setLoading] = useState(false);
+  const { currentUser, clearCart } = useApp();
+  const { toast } = useToast();
   const router = useRouter();
 
   const carrito = currentUser?.carrito ?? [];
@@ -38,13 +42,6 @@ const CarritoPage = () => {
     );
   }
 
-  const subtotal = carrito.reduce(
-    (total, item) => total + item.productoId.price * item.cantidad,
-    0,
-  );
-  const shipping = subtotal > 1000 ? 0 : 25;
-  const total = subtotal + shipping;
-
   if (carrito.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center py-12">
@@ -67,6 +64,40 @@ const CarritoPage = () => {
     );
   }
 
+  async function handleClearCart() {
+    setLoading(true);
+
+    try {
+      await clearCart();
+      toast({
+        variant: "success",
+        title: "Éxito:",
+        description: "el carrito se vació",
+      });
+    } catch (err: unknown) {
+      let errMsg = "No se pudo vaciar el carrito";
+
+      if (err instanceof Error) {
+        errMsg = err.message;
+      }
+
+      toast({
+        variant: "error",
+        title: "Error:",
+        description: errMsg,
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const subtotal = carrito.reduce(
+    (total, item) => total + item.productoId.price * item.cantidad,
+    0,
+  );
+  const shipping = subtotal > 1000 ? 0 : 25;
+  const total = subtotal + shipping;
+
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-5">
@@ -77,10 +108,19 @@ const CarritoPage = () => {
             Continuar comprando
           </Button>
           <h1 className="text-4xl font-medium mb-2">Carrito de compras</h1>
-          <p className="text-muted-foreground">
-            Tienes {carrito.length}{" "}
-            {carrito.length === 1 ? "producto" : "productos"} en tu carrito
-          </p>
+          <div className="flex items-center justify-between">
+            <p className="text-muted-foreground">
+              Tienes {carrito.length}{" "}
+              {carrito.length === 1 ? "producto" : "productos"} en tu carrito
+            </p>
+            <Button
+              className="text-[#DF3F40] border-[#DF3F40] hover:bg-[#DF3F40] hover:text-white border h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem]"
+              onClick={handleClearCart}
+            >
+              <Trash2 className="mr-2 h-4 w-4" />
+              Vaciar carrito
+            </Button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

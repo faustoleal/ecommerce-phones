@@ -1,5 +1,9 @@
 import { DecodeUser } from "@/src/types/user";
-import { agregarAlCarrito, limpiarCarrito } from "../services/carritoService";
+import {
+  agregarAlCarrito,
+  eliminarItemdelCarrito,
+  limpiarCarrito,
+} from "../services/carritoService";
 
 export const addItemToCart = async (
   currentUser: DecodeUser | null,
@@ -20,18 +24,22 @@ export const addItemToCart = async (
   }
 };
 
-export const removeItemFromCart = (
+export const removeItemFromCart = async (
   currentUser: DecodeUser | null,
   setCurrentUser: (user: DecodeUser) => void,
   productoId: string,
 ) => {
   if (!currentUser) return;
 
-  const updatedCart = currentUser.carrito.filter(
-    (item) => item.productoId !== productoId,
-  );
-
-  setCurrentUser({ ...currentUser, carrito: updatedCart });
+  try {
+    const updateCarrito = await eliminarItemdelCarrito(
+      currentUser._id,
+      productoId,
+    );
+    setCurrentUser(updateCarrito);
+  } catch (err) {
+    console.error("Error al actualizar el carrito:", err);
+  }
 };
 
 export const clearCartItems = async (

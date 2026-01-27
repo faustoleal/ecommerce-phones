@@ -12,7 +12,7 @@ import { useState } from "react";
 
 const CarritoPage = () => {
   const [loading, setLoading] = useState(false);
-  const { currentUser, clearCart } = useApp();
+  const { currentUser, clearCart, removeItem } = useApp();
   const { toast } = useToast();
   const router = useRouter();
 
@@ -76,6 +76,33 @@ const CarritoPage = () => {
       });
     } catch (err: unknown) {
       let errMsg = "No se pudo vaciar el carrito";
+
+      if (err instanceof Error) {
+        errMsg = err.message;
+      }
+
+      toast({
+        variant: "error",
+        title: "Error:",
+        description: errMsg,
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleRemoveItem(productId: string) {
+    setLoading(true);
+
+    try {
+      await removeItem(productId);
+      toast({
+        variant: "success",
+        title: "Éxito:",
+        description: "producto eliminado",
+      });
+    } catch (err: unknown) {
+      let errMsg = "No se pudo eliminar el producto";
 
       if (err instanceof Error) {
         errMsg = err.message;
@@ -157,7 +184,10 @@ const CarritoPage = () => {
                             {item.productoId.ram_capacity}GB
                           </p>
                         </div>
-                        <Button className="text-muted-foreground hover:text-[#DF3F40] flex-shrink-0">
+                        <Button
+                          className="text-muted-foreground hover:text-[#DF3F40] flex-shrink-0"
+                          onClick={() => handleRemoveItem(item.productoId._id)}
+                        >
                           <Trash2 className="h-4 w-4" />
                           <span className="sr-only">Eliminar</span>
                         </Button>

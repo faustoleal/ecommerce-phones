@@ -8,17 +8,23 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "../Card";
 import { useToast } from "@/src/context/ToastContext";
-import { useState } from "react";
 
 const CarritoPage = () => {
-  const [loading, setLoading] = useState(false);
-  const { currentUser, clearCart, removeItem } = useApp();
+  const { currentUser, clearCart, removeItem, editItem } = useApp();
   const { toast } = useToast();
   const router = useRouter();
 
-  const carrito = currentUser?.carrito ?? [];
+  function handleRestar(quantity: number, productId: string) {
+    if (quantity > 1) {
+      editItem(productId, quantity - 1);
+    }
+  }
 
-  console.log(carrito);
+  function handleSumar(quantity: number, productId: string) {
+    editItem(productId, quantity + 1);
+  }
+
+  const carrito = currentUser?.carrito ?? [];
 
   if (!currentUser) {
     return (
@@ -65,8 +71,6 @@ const CarritoPage = () => {
   }
 
   async function handleClearCart() {
-    setLoading(true);
-
     try {
       await clearCart();
       toast({
@@ -86,14 +90,10 @@ const CarritoPage = () => {
         title: "Error:",
         description: errMsg,
       });
-    } finally {
-      setLoading(false);
     }
   }
 
   async function handleRemoveItem(productId: string) {
-    setLoading(true);
-
     try {
       await removeItem(productId);
       toast({
@@ -113,8 +113,6 @@ const CarritoPage = () => {
         title: "Error:",
         description: errMsg,
       });
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -196,14 +194,24 @@ const CarritoPage = () => {
                       <div className="flex items-center justify-between gap-4">
                         {/* Quantity Controls */}
                         <div className="flex items-center border border-border rounded-lg">
-                          <Button className="px-3">
+                          <Button
+                            className="px-3"
+                            onClick={() =>
+                              handleRestar(item.cantidad, item.productoId._id)
+                            }
+                          >
                             <Minus className="h-3 w-3" />
                           </Button>
                           <span className="px-4 font-medium text-sm">
                             {item.cantidad}
                           </span>
                           <Button className="px-3">
-                            <Plus className="h-3 w-3" />
+                            <Plus
+                              className="h-3 w-3"
+                              onClick={() =>
+                                handleSumar(item.cantidad, item.productoId._id)
+                              }
+                            />
                           </Button>
                         </div>
 

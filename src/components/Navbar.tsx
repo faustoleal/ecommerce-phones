@@ -31,6 +31,11 @@ const Navbar = () => {
     { href: "/contacto", label: "Contacto" },
   ];
 
+  const cartItemsCount = currentUser?.carrito.reduce(
+    (count, item) => count + item.cantidad,
+    0,
+  );
+
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-5">
@@ -67,10 +72,15 @@ const Navbar = () => {
               <Moon className="h-5 w-5" />
             </Button>
             <Button
-              className="h-9 w-9 hover:bg-gray-100"
+              className="h-9 w-9 hover:bg-gray-100 relative"
               onClick={() => router.push("/carrito")}
             >
               <ShoppingCart className="h-5 w-5" />
+              {cartItemsCount !== undefined && cartItemsCount > 0 && (
+                <span className="absolute top-0 right-0 h-5 w-5 rounded-full bg-[#6366F1] text-white text-xs flex items-center justify-center font-medium">
+                  {cartItemsCount}
+                </span>
+              )}
             </Button>
             {currentUser ? (
               <DropdownMenu>

@@ -11,6 +11,7 @@ import { decodedToken, loginUser, logoutUser } from "./authFunction";
 import {
   addItemToCart,
   clearCartItems,
+  editQuantity,
   removeItemFromCart,
 } from "./cartFunction";
 
@@ -26,6 +27,7 @@ interface UserContextType {
   isAdmin: () => boolean;
   logout: () => void;
   addItem: (productoId: string, cantidad: number) => void;
+  editItem: (productoId: string, cantidad: number) => void;
   removeItem: (productoId: string) => void;
   clearCart: () => void;
 }
@@ -83,6 +85,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     addItemToCart(currentUser, (u) => setCurrentUser(u), productoId, cantidad);
   };
 
+  const editItem = (productoId: string, cantidad: number) => {
+    editQuantity(currentUser, (u) => setCurrentUser(u), productoId, cantidad);
+  };
+
   const removeItem = (productoId: string) => {
     removeItemFromCart(currentUser, (u) => setCurrentUser(u), productoId);
   };
@@ -100,6 +106,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     isAdmin,
     logout,
     addItem,
+    editItem,
     removeItem,
     clearCart,
   };

@@ -92,3 +92,32 @@ export async function eliminarItem(id: string, productoId: string) {
     );
   }
 }
+
+export async function actualizarCantidad(
+  id: string,
+  productoId: string,
+  cantidad: number,
+) {
+  try {
+    if (!productoId) {
+      return NextResponse.json({ message: "Datos inválidos" }, { status: 400 });
+    }
+
+    const user = await UserModel.findOneAndUpdate(
+      { _id: id, "carrito.productoId": productoId },
+      { $set: { "carrito.$.cantidad": cantidad } },
+      { new: true },
+    ).populate({
+      path: "carrito.productoId",
+      select: "brand_name price model internal_memory ram_capacity",
+    });
+
+    return NextResponse.json(user, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Error al actualizar el carrito" },
+      { status: 500 },
+    );
+  }
+}

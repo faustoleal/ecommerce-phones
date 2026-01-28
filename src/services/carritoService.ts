@@ -19,6 +19,29 @@ export async function agregarAlCarrito(cart: CartItem, id: string) {
 
   return data;
 }
+export async function editarCantidad(
+  cantidad: number,
+  id: string,
+  productoId: string,
+) {
+  const res = await fetch(`/api/carrito/${id}/${productoId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cantidad: cantidad }),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message);
+  }
+
+  if (data.newToken) {
+    localStorage.setItem("authToken", data.newToken);
+  }
+
+  return data;
+}
 
 export async function limpiarCarrito(id: string) {
   const res = await fetch(`/api/carrito/${id}`, {

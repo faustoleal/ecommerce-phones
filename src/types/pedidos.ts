@@ -10,3 +10,5 @@ export interface Pedido {
   status: PedidoStatus;
   date: string;
 }
+
+export type newPedido = Omit<Pedido, "_id">;

@@ -60,7 +60,7 @@ const Navbar = () => {
 
             {isAdmin() && (
               <Link
-                href="/contacto"
+                href="/admin"
                 className="text-[#6366F1] hover:text-[#8B5CF6] transition-colors font-medium"
               >
                 Admin Panel
@@ -127,7 +127,7 @@ const Navbar = () => {
 
                   {isAdmin() && (
                     <Link
-                      href="/contacto"
+                      href="/admin"
                       className="text-[#6366F1] hover:text-[#8B5CF6] transition-colors font-medium pl-2"
                     >
                       Admin Panel

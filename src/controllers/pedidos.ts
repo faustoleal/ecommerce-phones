@@ -23,9 +23,7 @@ export async function getPedidos() {
 
 export async function crearPedido(pedido: newPedido) {
   try {
-    const newPedido = await PedidoModel.create({
-      pedido,
-    });
+    const newPedido = await PedidoModel.create(pedido);
 
     return NextResponse.json(
       {

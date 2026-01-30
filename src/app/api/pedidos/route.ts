@@ -8,8 +8,17 @@ export async function GET() {
 
 export async function POST(req: Request) {
   connectDB();
-  const { orderNum, productos, user, status, date } = await req.json();
+  const { orderNum, productos, user, status, precio, envio, date } =
+    await req.json();
 
-  const nuevoPedido = { orderNum, productos, user, status, date };
+  const nuevoPedido = {
+    orderNum,
+    productos,
+    user,
+    status,
+    precio,
+    envio,
+    date,
+  };
   return crearPedido(nuevoPedido);
 }

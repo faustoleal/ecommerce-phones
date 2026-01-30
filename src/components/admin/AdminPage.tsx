@@ -1,6 +1,11 @@
 "use client";
 
+import { usePedidos } from "@/src/context/PedidosContext";
+
 const AdminPage = () => {
+  const { pedidos } = usePedidos();
+
+  console.log(pedidos);
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-5">

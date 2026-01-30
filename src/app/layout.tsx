@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { UserProvider } from "../context/UserContext";
 import { ToastProvider } from "../context/ToastContext";
 import ToasterContainer from "../components/ToasterContainer";
+import { PedidosProvider } from "../context/PedidosContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,18 +31,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <UserProvider>
-        <ToastProvider>
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
-          >
-            <div className="flex min-h-screen flex-col">
-              <ToasterContainer />
-              <Navbar />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
-          </body>
-        </ToastProvider>
+        <PedidosProvider>
+          <ToastProvider>
+            <body
+              className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
+            >
+              <div className="flex min-h-screen flex-col">
+                <ToasterContainer />
+                <Navbar />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
+            </body>
+          </ToastProvider>
+        </PedidosProvider>
       </UserProvider>
     </html>
   );

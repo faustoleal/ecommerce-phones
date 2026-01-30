@@ -1,4 +1,4 @@
-import { CartItem, PedidoUser } from "./user";
+import { CartItem } from "./user";
 
 export type PedidoStatus = "Completado" | "Procesando" | "Pendiente";
 
@@ -6,9 +6,11 @@ export interface Pedido {
   _id: string;
   orderNum: string;
   productos: CartItem[];
-  user: PedidoUser;
+  user: string;
   status: PedidoStatus;
+  precio: number;
+  envio: number;
   date: string;
 }
 
-export type newPedido = Omit<Pedido, "_id">;
+export type NewPedido = Omit<Pedido, "_id">;

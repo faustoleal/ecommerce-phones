@@ -8,10 +8,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "../Card";
 import { useToast } from "@/src/context/ToastContext";
+import NotUserCarrito from "./NotUserCarrito";
+import NotContentCarrito from "./NotContentCarrito";
+import { usePedidos } from "@/src/context/PedidosContext";
 
 const CarritoPage = () => {
   const { currentUser, clearCart, removeItem, editItem } = useApp();
   const { toast } = useToast();
+  const { hacerPedido } = usePedidos();
   const router = useRouter();
 
   function handleRestar(quantity: number, productId: string) {
@@ -27,47 +31,11 @@ const CarritoPage = () => {
   const carrito = currentUser?.carrito ?? [];
 
   if (!currentUser) {
-    return (
-      <div className="min-h-screen flex items-center justify-center py-12">
-        <div className="text-center max-w-md px-5">
-          <div className="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted">
-            <ShoppingBag className="h-10 w-10 text-muted-foreground" />
-          </div>
-          <h1 className="text-3xl font-medium mb-4">Tu carrito está vacío</h1>
-          <p className="text-muted-foreground mb-8 leading-relaxed">
-            Inicia sesión para tener acceso al carrito
-          </p>
-          <Button
-            onClick={() => router.push("/login")}
-            className="bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-9 gap-1.5 px-2.5"
-          >
-            Iniciar sesión
-          </Button>
-        </div>
-      </div>
-    );
+    return <NotUserCarrito />;
   }
 
   if (carrito.length === 0) {
-    return (
-      <div className="min-h-screen flex items-center justify-center py-12">
-        <div className="text-center max-w-md px-5">
-          <div className="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted">
-            <ShoppingBag className="h-10 w-10 text-muted-foreground" />
-          </div>
-          <h1 className="text-3xl font-medium mb-4">Tu carrito está vacío</h1>
-          <p className="text-muted-foreground mb-8 leading-relaxed">
-            Agrega productos a tu carrito para comenzar a comprar
-          </p>
-          <Button
-            onClick={() => router.push("/productos")}
-            className="bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-9 gap-1.5 px-2.5"
-          >
-            Explorar productos
-          </Button>
-        </div>
-      </div>
-    );
+    return <NotContentCarrito />;
   }
 
   async function handleClearCart() {
@@ -122,6 +90,46 @@ const CarritoPage = () => {
   );
   const shipping = subtotal > 1000 ? 0 : 25;
   const total = subtotal + shipping;
+
+  async function handleComprar() {
+    if (!currentUser) {
+      toast({
+        variant: "error",
+        title: "Error:",
+        description: "Debes iniciar sesión para realizar un pedido",
+      });
+      return;
+    }
+
+    try {
+      await hacerPedido({
+        orderNum: "ORD-0001",
+        productos: carrito,
+        user: currentUser._id,
+        status: "Procesando",
+        precio: total,
+        envio: shipping,
+        date: new Date().toLocaleDateString("es-AR"),
+      });
+      toast({
+        variant: "success",
+        title: "Éxito:",
+        description: "Tu pedido se ha realizado correctamente.",
+      });
+    } catch (err: unknown) {
+      let errMsg = "No se pudo realizar el pedido";
+
+      if (err instanceof Error) {
+        errMsg = err.message;
+      }
+
+      toast({
+        variant: "error",
+        title: "Error:",
+        description: errMsg,
+      });
+    }
+  }
 
   return (
     <div className="min-h-screen py-12">
@@ -277,7 +285,10 @@ const CarritoPage = () => {
                   </div>
                 </div>
 
-                <Button className="w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white font-medium h-9 gap-1.5 px-2.5">
+                <Button
+                  className="w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white font-medium h-9 gap-1.5 px-2.5"
+                  onClick={handleComprar}
+                >
                   Finalizar compra
                 </Button>
 

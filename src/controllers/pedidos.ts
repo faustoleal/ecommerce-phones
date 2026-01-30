@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { newPedido } from "../types/pedidos";
+import { NewPedido } from "../types/pedidos";
 import { PedidoModel } from "../models/pedidos";
 
 export async function getPedidos() {
@@ -21,13 +21,12 @@ export async function getPedidos() {
   }
 }
 
-export async function crearPedido(pedido: newPedido) {
+export async function crearPedido(pedido: NewPedido) {
   try {
     const newPedido = await PedidoModel.create(pedido);
 
     return NextResponse.json(
       {
-        message: "Pedido creado con éxito",
         newPedido,
       },
       { status: 201 },

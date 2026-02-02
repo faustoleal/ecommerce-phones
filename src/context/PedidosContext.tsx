@@ -9,8 +9,6 @@ import {
 import { NewPedido, Pedido } from "../types/pedidos";
 import { obtenerPedidos, realizarPedidos } from "../services/pedidosService";
 
-export type ToastVariant = "success" | "error";
-
 interface PedidosContextType {
   pedidos: Pedido[];
   setPedidos: (pedidos: Pedido[] | []) => void;
@@ -33,7 +31,7 @@ export const PedidosProvider = ({ children }: { children: ReactNode }) => {
   const hacerPedido = async (nuevoPedido: NewPedido) => {
     try {
       const updatePedidos = await realizarPedidos(nuevoPedido);
-      setPedidos(updatePedidos);
+      setPedidos([...pedidos, updatePedidos]);
     } catch (error) {
       console.error("Error al realizar pedido:", error);
     }

@@ -1,9 +1,10 @@
 import { ShoppingBag } from "lucide-react";
 import Button from "../Button";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const NotContentCarrito = () => {
   const router = useRouter();
+
   return (
     <div className="min-h-screen flex items-center justify-center py-12">
       <div className="text-center max-w-md px-5">

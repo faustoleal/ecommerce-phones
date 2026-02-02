@@ -103,9 +103,8 @@ const CarritoPage = () => {
 
     try {
       await hacerPedido({
-        orderNum: "ORD-0001",
         productos: carrito,
-        user: currentUser._id,
+        user: { userId: currentUser._id },
         status: "Procesando",
         precio: total,
         envio: shipping,

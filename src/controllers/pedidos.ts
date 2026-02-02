@@ -25,12 +25,7 @@ export async function crearPedido(pedido: NewPedido) {
   try {
     const newPedido = await PedidoModel.create(pedido);
 
-    return NextResponse.json(
-      {
-        newPedido,
-      },
-      { status: 201 },
-    );
+    return NextResponse.json(newPedido, { status: 201 });
   } catch (error) {
     console.log(error);
     return NextResponse.json(

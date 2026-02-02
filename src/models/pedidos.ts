@@ -1,10 +1,16 @@
 import { Schema, model, models } from "mongoose";
 import { Pedido } from "../types/pedidos";
 
+const counterSchema = new Schema({
+  name: { type: String, required: true },
+  seq: { type: Number, default: 0 },
+});
+
+export const CounterModel = models.Counter || model("Counter", counterSchema);
+
 const pedidoSchema = new Schema<Pedido>({
   orderNum: {
     type: String,
-    required: true,
   },
   productos: [
     {
@@ -23,6 +29,18 @@ const pedidoSchema = new Schema<Pedido>({
     type: String,
     required: true,
   },
+});
+
+pedidoSchema.pre("save", async function () {
+  if (!this.isNew) return;
+
+  const counter = await CounterModel.findOneAndUpdate(
+    { name: "pedido" },
+    { $inc: { seq: 1 } },
+    { new: true, upsert: true },
+  );
+
+  this.orderNum = `ORD-${String(counter.seq).padStart(4, "0")}`;
 });
 
 export const PedidoModel =

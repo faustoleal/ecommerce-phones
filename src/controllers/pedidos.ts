@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { NewPedido } from "../types/pedidos";
 import { PedidoModel } from "../models";
+import { transporter } from "../lib/mailer";
 
 export async function getPedidos() {
   try {
@@ -33,6 +34,29 @@ export async function getPedidos() {
 export async function crearPedido(pedido: NewPedido) {
   try {
     const newPedido = await PedidoModel.create(pedido);
+
+    const newPedidoPopultate = await PedidoModel.findById(newPedido._id)
+      .populate({
+        path: "productos.productoId",
+        select: "price model internal_memory ram_capacity",
+      })
+      .populate({
+        path: "user.userId",
+        select: "name username email",
+      });
+
+    console.log(newPedidoPopultate.user.userId.email);
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: newPedidoPopultate.user.userId.email,
+      subject: `Confirmación de pedido #${newPedidoPopultate.orderNum}`,
+      html: `
+      <h1>Gracias por tu compra</h1>
+      <p>Tu pedido con número <strong>${newPedidoPopultate.orderNum}</strong> está en proceso.</p>
+      <p>Te avisaremos cuando esté listo para envío.</p>
+    `,
+    });
 
     return NextResponse.json(newPedido, { status: 201 });
   } catch (error) {

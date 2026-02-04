@@ -1,4 +1,4 @@
-import { UserModel } from "@/src/models/user";
+import { UserModel } from "@/src/models";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";

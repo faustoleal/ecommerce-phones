@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { CartItem } from "../types/user";
-import { UserModel } from "../models/user";
+import { UserModel } from "../models";
 
 export async function acutalizarCarrito(cart: CartItem, id: string) {
   try {

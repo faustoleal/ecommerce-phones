@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { UserModel } from "../models/user";
+import { UserModel } from "../models";
 import { NewUser } from "../types/user";
 import bcrypt from "bcrypt";
 
 export async function getUsuarios() {
   try {
-    const users = await UserModel.find();
+    const users = await UserModel.find().populate("carrito.productoId");
     console.log(users);
     if (users.length === 0) {
       return NextResponse.json(

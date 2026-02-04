@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { PhonesModel } from "../models/phones";
+import { PhonesModel } from "../models";
 
 export async function listarProductos(req: Request) {
   try {
@@ -17,18 +17,18 @@ export async function listarProductos(req: Request) {
     if (products.length === 0) {
       return NextResponse.json(
         { message: "No hay datos en la base" },
-        { status: 400 }
+        { status: 400 },
       );
     }
     return NextResponse.json(
       { page, totalPages, totalPhones: total, products },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (err) {
     console.log(err);
     return NextResponse.json(
       { message: "Error al obtener productos" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -39,7 +39,7 @@ export async function getPhonesById(id: string) {
     if (!phone) {
       return NextResponse.json(
         { mesagge: `No se encotro producto con id: ${id}` },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json(phone, { status: 200 });
@@ -47,7 +47,7 @@ export async function getPhonesById(id: string) {
     console.log(err);
     return NextResponse.json(
       { mesagge: "Error al obtener los productos" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -67,7 +67,7 @@ export async function getDestacadosPhones() {
     console.log(err);
     return NextResponse.json(
       { message: "Error al obtener productos destacados" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

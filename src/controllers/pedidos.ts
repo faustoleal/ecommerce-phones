@@ -1,10 +1,19 @@
 import { NextResponse } from "next/server";
 import { NewPedido } from "../types/pedidos";
-import { PedidoModel } from "../models/pedidos";
+import { PedidoModel } from "../models";
 
 export async function getPedidos() {
   try {
-    const pedidos = await PedidoModel.find();
+    const pedidos = await PedidoModel.find()
+      .populate({
+        path: "productos.productoId",
+        select: "price model internal_memory ram_capacity",
+      })
+      .populate({
+        path: "user.userId",
+        select: "name username email",
+      });
+
     if (pedidos.length === 0) {
       return NextResponse.json(
         { message: "No hay datos en la base" },

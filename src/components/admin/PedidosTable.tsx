@@ -1,0 +1,77 @@
+import { Pedido } from "@/src/types/pedidos";
+import React from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../Card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../Table";
+
+interface PedidosTableProps {
+  pedidos: Pedido[];
+}
+
+const PedidosTable: React.FC<PedidosTableProps> = ({ pedidos }) => {
+  console.log(pedidos);
+  return (
+    <div className="text-sm flex-1 outline-none">
+      <Card className="border-border">
+        <CardHeader>
+          <CardTitle>Gestión de Pedidos</CardTitle>
+          <CardDescription>Administra el estado de los pedidos</CardDescription>
+        </CardHeader>
+        <CardContent className="px-4">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>ID</TableHead>
+                <TableHead>Cliente</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Productos</TableHead>
+                <TableHead>Total</TableHead>
+                <TableHead>Fecha</TableHead>
+                <TableHead>Estado</TableHead>
+                <TableHead className="text-right">Acciones</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {pedidos.map((pedido) => (
+                <TableRow
+                  key={pedido._id}
+                  className="cursor-pointer hover:bg-muted/50 transition-colors"
+                >
+                  <TableCell className="font-medium">
+                    {pedido.orderNum}
+                  </TableCell>
+                  <TableCell>{pedido.user.userId.name}</TableCell>
+                  <TableCell className="text-muted-foreground text-sm">
+                    {pedido.user.userId.email}
+                  </TableCell>
+                  <TableCell>{pedido.productos[0].cantidad}</TableCell>
+                  <TableCell className="font-medium text-[#6366f1]">
+                    ${pedido.productos[0].productoId.price}
+                  </TableCell>
+                  <TableCell className="text-sm text-muted-foreground">
+                    {pedido.date}
+                  </TableCell>
+                  <TableCell>{pedido.status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default PedidosTable;

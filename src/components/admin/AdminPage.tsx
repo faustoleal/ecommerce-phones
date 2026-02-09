@@ -3,12 +3,26 @@
 import { usePedidos } from "@/src/context/PedidosContext";
 import { Card, CardContent } from "../Card";
 import { DollarSign, Package, ShoppingCart, TrendingUp } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PedidosTable from "./PedidosTable";
+import { Phone } from "@/src/types/phones";
+import { fetchProductos } from "@/src/services/phonesService";
+import ProductosTable from "./ProductosTable";
+import CreatePhoneForm from "./CreatePhoneForm";
 
 const AdminPage = () => {
   const [selected, setSelected] = useState("pedidos");
+  const [productos, setProductos] = useState<Phone[]>([]);
+  const [page, setPage] = useState<number>(1);
   const { pedidos } = usePedidos();
+
+  useEffect(() => {
+    fetchProductos(page)
+      .then((data) => {
+        setProductos(data.products);
+      })
+      .catch((error) => console.log(error));
+  }, [page]);
 
   return (
     <div className="min-h-screen py-12">
@@ -112,6 +126,13 @@ const AdminPage = () => {
             </li>
           </ul>
           {selected === "pedidos" && <PedidosTable pedidos={pedidos} />}
+          {selected === "productos" && <ProductosTable productos={productos} />}
+          {selected === "agregar" && (
+            <CreatePhoneForm
+              productos={productos}
+              setProductos={setProductos}
+            />
+          )}
         </div>
       </div>
     </div>

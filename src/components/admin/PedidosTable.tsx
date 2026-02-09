@@ -21,7 +21,6 @@ interface PedidosTableProps {
 }
 
 const PedidosTable: React.FC<PedidosTableProps> = ({ pedidos }) => {
-  console.log(pedidos);
   return (
     <div className="text-sm flex-1 outline-none">
       <Card className="border-border">

@@ -1,7 +1,7 @@
-import { CartItem } from "./user";
+import { CartItemPopulate, User } from "./user";
 
 export interface PedidoUser {
-  userId: string;
+  userId: User;
 }
 
 export type PedidoStatus = "Completado" | "Procesando" | "Pendiente";
@@ -9,7 +9,7 @@ export type PedidoStatus = "Completado" | "Procesando" | "Pendiente";
 export interface Pedido {
   _id: string;
   orderNum: string;
-  productos: CartItem[];
+  productos: CartItemPopulate[];
   user: PedidoUser;
   status: PedidoStatus;
   precio: number;
@@ -17,4 +17,6 @@ export interface Pedido {
   date: string;
 }
 
-export type NewPedido = Omit<Pedido, "_id" | "orderNum">;
+export type NewPedido = Omit<Pedido, "_id" | "orderNum" | "user"> & {
+  user: { userId: string };
+};

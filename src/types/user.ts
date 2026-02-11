@@ -1,7 +1,14 @@
+import { Phone } from "./phones";
+
 export type UserRole = "admin" | "user";
 
 export interface CartItem {
   productoId: string;
+  cantidad: number;
+}
+
+export interface CartItemPopulate {
+  productoId: Phone;
   cantidad: number;
 }
 
@@ -12,7 +19,7 @@ export interface User {
   email: string;
   password: string;
   role: UserRole;
-  carrito: CartItem[];
+  carrito: CartItemPopulate[];
 }
 
 export type DecodeUser = Omit<User, "password">;

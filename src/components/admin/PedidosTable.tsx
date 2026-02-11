@@ -1,5 +1,7 @@
+"use client";
+
 import { Pedido } from "@/src/types/pedidos";
-import React from "react";
+import React, { SetStateAction } from "react";
 import {
   Card,
   CardContent,
@@ -18,9 +20,13 @@ import {
 
 interface PedidosTableProps {
   pedidos: Pedido[];
+  setSelectedOrder: React.Dispatch<SetStateAction<Pedido | null>>;
 }
 
-const PedidosTable: React.FC<PedidosTableProps> = ({ pedidos }) => {
+const PedidosTable: React.FC<PedidosTableProps> = ({
+  pedidos,
+  setSelectedOrder,
+}) => {
   return (
     <div className="text-sm flex-1 outline-none">
       <Card className="border-border">
@@ -47,6 +53,7 @@ const PedidosTable: React.FC<PedidosTableProps> = ({ pedidos }) => {
                 <TableRow
                   key={pedido._id}
                   className="cursor-pointer hover:bg-muted/50 transition-colors"
+                  onClick={() => setSelectedOrder(pedido)}
                 >
                   <TableCell className="font-medium">
                     {pedido.orderNum}

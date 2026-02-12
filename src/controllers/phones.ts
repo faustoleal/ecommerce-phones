@@ -71,3 +71,19 @@ export async function getDestacadosPhones() {
     );
   }
 }
+
+export async function getRelacionadosPhones(marca: string) {
+  console.log(marca);
+  try {
+    const relacionados = await PhonesModel.find({
+      brand_name: `${marca}`,
+    }).limit(3);
+    return NextResponse.json(relacionados, { status: 200 });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(
+      { message: "Error al obtener productos relacionados" },
+      { status: 500 },
+    );
+  }
+}

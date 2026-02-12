@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import RatingEstrellas from "../RatingEstrellas";
 import Button from "../Button";
 import { useApp } from "@/src/context/UserContext";
+import Relacionados from "../relacionados/Relacionados";
 
 const ProductosByIdPage = ({ id }: { id: string }) => {
   const [producto, setProducto] = useState<Phone | undefined>(undefined);
@@ -243,6 +244,8 @@ const ProductosByIdPage = ({ id }: { id: string }) => {
             </div>
           </div>
         </div>
+
+        <Relacionados marca={producto.brand_name} />
       </div>
     </div>
   );

@@ -42,3 +42,16 @@ export async function fetchProductosByID(id: string) {
 
   return res.json();
 }
+
+export async function fetchProductosRelacionados(marca: string) {
+  const res = await fetch(`/api/phones/relacionados/${marca}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (!res.ok) {
+    throw new Error("Error al obtener productos relacionados");
+  }
+
+  return res.json();
+}

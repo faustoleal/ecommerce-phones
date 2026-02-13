@@ -4,7 +4,11 @@ export interface PedidoUser {
   userId: User;
 }
 
-export type PedidoStatus = "Completado" | "Procesando" | "Pendiente";
+export type PedidoStatus =
+  | "Completado"
+  | "Procesando"
+  | "Pendiente"
+  | "Cancelado";
 
 export interface Pedido {
   _id: string;

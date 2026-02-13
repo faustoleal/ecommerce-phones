@@ -1,6 +1,6 @@
 "use client";
 
-import { Pedido } from "@/src/types/pedidos";
+import { Pedido, PedidoStatus } from "@/src/types/pedidos";
 import React, { SetStateAction } from "react";
 import {
   Card,
@@ -27,6 +27,19 @@ const PedidosTable: React.FC<PedidosTableProps> = ({
   pedidos,
   setSelectedOrder,
 }) => {
+  const getPedidoStatusColor = (status: PedidoStatus) => {
+    switch (status) {
+      case "Completado":
+        return "bg-[#06B6D4] text-white";
+      case "Procesando":
+        return "bg-[#8B5CF6] text-white";
+      case "Pendiente":
+        return "bg-[#6366F1] text-white";
+      case "Cancelado":
+        return "bg-[#DF3F40] text-white";
+    }
+  };
+
   return (
     <div className="text-sm flex-1 outline-none">
       <Card className="border-border">
@@ -69,7 +82,13 @@ const PedidosTable: React.FC<PedidosTableProps> = ({
                   <TableCell className="text-sm text-muted-foreground">
                     {pedido.date}
                   </TableCell>
-                  <TableCell>{pedido.status}</TableCell>
+                  <TableCell>
+                    <div
+                      className={`inline-flex items-center justify-center rounded-full border border-transparent px-2 py-0.5 text-xs font-medium w-fit shrink-0 overflow-hidden ${getPedidoStatusColor(pedido.status)}`}
+                    >
+                      {pedido.status}
+                    </div>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

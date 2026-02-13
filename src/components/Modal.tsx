@@ -7,7 +7,7 @@ const Modal = ({ className, children }: React.ComponentProps<"div">) => {
 const ModalContent = ({ className, ...props }: React.ComponentProps<"div">) => {
   return (
     <div
-      className={`bg-background  ring-foreground/10 grid max-w-[calc(100%-2rem)] gap-4 rounded-xl p-4 text-sm ring-1  sm:max-w-sm fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 outline-none ${className}`}
+      className={` bg-background ring-foreground/10 grid max-w-[calc(100%-2rem)] gap-4 rounded-xl p-4 text-sm ring-1 duration-100 sm:max-w-sm fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 outline-none ${className}`}
       {...props}
     />
   );

@@ -26,3 +26,17 @@ export async function realizarPedidos(pedido: NewPedido) {
 
   return res.json();
 }
+
+export async function editarPedidos(pedidoId: string, status: string) {
+  const res = await fetch(`/api/pedidos/${pedidoId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status: status }),
+  });
+
+  if (!res.ok) {
+    throw new Error("Error al editar pedido");
+  }
+
+  return res.json();
+}

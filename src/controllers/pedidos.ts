@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { NewPedido, PedidoStatus } from "../types/pedidos";
+import { NewPedido } from "../types/pedidos";
 import { PedidoModel } from "../models";
 import { transporter } from "../lib/mailer";
 
@@ -68,10 +68,7 @@ export async function crearPedido(pedido: NewPedido) {
   }
 }
 
-export async function editarPedidoStatus(
-  pedidoId: string,
-  status: PedidoStatus,
-) {
+export async function editarPedidoStatus(pedidoId: string, status: string) {
   try {
     if (!pedidoId) {
       return NextResponse.json({ message: "Datos inválidos" }, { status: 400 });

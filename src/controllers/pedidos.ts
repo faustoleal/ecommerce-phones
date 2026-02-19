@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { NewPedido } from "../types/pedidos";
+import { NewPedido, PedidoStatus } from "../types/pedidos";
 import { PedidoModel } from "../models";
 import { transporter } from "../lib/mailer";
 
@@ -63,6 +63,31 @@ export async function crearPedido(pedido: NewPedido) {
     console.log(error);
     return NextResponse.json(
       { message: "Error interno del servidor", error },
+      { status: 500 },
+    );
+  }
+}
+
+export async function editarPedidoStatus(
+  pedidoId: string,
+  status: PedidoStatus,
+) {
+  try {
+    if (!pedidoId) {
+      return NextResponse.json({ message: "Datos inválidos" }, { status: 400 });
+    }
+
+    const pedido = await PedidoModel.findByIdAndUpdate(
+      { _id: pedidoId },
+      { $set: { status: status } },
+      { new: true },
+    );
+
+    return NextResponse.json(pedido, { status: 200 });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json(
+      { message: "Error al actualizar el pedido" },
       { status: 500 },
     );
   }

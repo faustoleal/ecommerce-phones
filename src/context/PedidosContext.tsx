@@ -7,12 +7,17 @@ import {
   useEffect,
 } from "react";
 import { NewPedido, Pedido } from "../types/pedidos";
-import { obtenerPedidos, realizarPedidos } from "../services/pedidosService";
+import {
+  editarPedidos,
+  obtenerPedidos,
+  realizarPedidos,
+} from "../services/pedidosService";
 
 interface PedidosContextType {
   pedidos: Pedido[];
   setPedidos: (pedidos: Pedido[] | []) => void;
   hacerPedido: (nuevoPedido: NewPedido) => void;
+  editarStatus: (pedidoId: string, status: string) => void;
 }
 
 const PedidosContext = createContext<PedidosContextType | undefined>(undefined);
@@ -37,8 +42,21 @@ export const PedidosProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const editarStatus = async (pedidoId: string, status: string) => {
+    try {
+      const editedPedido = await editarPedidos(pedidoId, status);
+      setPedidos((prevPedidos) =>
+        prevPedidos.map((p) => (p._id === pedidoId ? editedPedido : p)),
+      );
+    } catch (error) {
+      console.error("Error al editar pedido:", error);
+    }
+  };
+
   return (
-    <PedidosContext.Provider value={{ pedidos, setPedidos, hacerPedido }}>
+    <PedidosContext.Provider
+      value={{ pedidos, setPedidos, hacerPedido, editarStatus }}
+    >
       {children}
     </PedidosContext.Provider>
   );

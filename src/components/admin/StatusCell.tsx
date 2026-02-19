@@ -9,31 +9,66 @@ import {
   SelectValue,
 } from "../Select";
 import { TableCell } from "../Table";
+import { usePedidos } from "@/src/context/PedidosContext";
+import { useToast } from "@/src/context/ToastContext";
 
-const StatusCell = (status: { status: string }) => {
+interface StatusCellProps {
+  status: string;
+  id: string;
+}
+
+const StatusCell: React.FC<StatusCellProps> = ({ status, id }) => {
   const [open, setOpen] = useState(false);
+
+  const { toast } = useToast();
+  const { editarStatus } = usePedidos();
 
   function handleOnClick(e: React.MouseEvent<HTMLButtonElement>) {
     e.stopPropagation();
     setOpen(!open);
   }
 
+  async function handleEditStatus(
+    e: React.MouseEvent<HTMLSpanElement>,
+    status: string,
+  ) {
+    e.stopPropagation();
+    try {
+      await editarStatus(id, status);
+      toast({
+        variant: "success",
+        title: "Éxito:",
+        description: "Tu pedido se ha editado correctamente.",
+      });
+    } catch (err: unknown) {
+      let errMsg = "No se pudo editar el pedido";
+
+      if (err instanceof Error) {
+        errMsg = err.message;
+      }
+
+      toast({
+        variant: "error",
+        title: "Error:",
+        description: errMsg,
+      });
+    } finally {
+      setOpen(false);
+    }
+  }
+
   const statusName = ["Pendiente", "Procesando", "Completado", "Cancelado"];
 
-  console.log(status);
   return (
     <TableCell>
       <Select>
         <SelectTrigger className="w-[140px]" onClick={(e) => handleOnClick(e)}>
-          <SelectValue>{status.status}</SelectValue>
+          <SelectValue>{status}</SelectValue>
         </SelectTrigger>
         <SelectContent className={open ? "w-[140px]" : "hidden"}>
-          {statusName.map((name, i) => (
-            <SelectItem
-              key={i}
-              isSelect={name === status.status ? true : false}
-            >
-              {name}
+          {statusName.map((name) => (
+            <SelectItem key={name} isSelect={name === status ? true : false}>
+              <span onClick={(e) => handleEditStatus(e, name)}>{name}</span>
             </SelectItem>
           ))}
         </SelectContent>

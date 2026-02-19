@@ -1,7 +1,7 @@
 "use client";
 
 import { Pedido, PedidoStatus } from "@/src/types/pedidos";
-import React, { SetStateAction, useState } from "react";
+import React, { SetStateAction } from "react";
 import {
   Card,
   CardContent,
@@ -90,7 +90,7 @@ const PedidosTable: React.FC<PedidosTableProps> = ({
                       {pedido.status}
                     </div>
                   </TableCell>
-                  <StatusCell status={pedido.status} />
+                  <StatusCell status={pedido.status} id={pedido._id} />
                 </TableRow>
               ))}
             </TableBody>

@@ -23,7 +23,9 @@ const pedidoSchema = new Schema<Pedido>({
   },
   status: {
     type: String,
+    enum: ["Completado", "Procesando", "Pendiente", "Cancelado"],
     default: "Procesando",
+    required: true,
   },
   date: {
     type: String,

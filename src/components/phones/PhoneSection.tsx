@@ -1,26 +1,31 @@
 "use client";
 
 import { fetchProductos } from "@/src/services/phonesService";
-import { Phone } from "@/src/types/phones";
 import { useEffect, useState } from "react";
 import PhoneList from "./PhoneList";
+import { ProductosState } from "../admin/AdminPage";
 
 const PhoneSection = () => {
-  const [phones, setPhones] = useState<Phone[]>([]);
+  const [productos, setProductos] = useState<ProductosState>({
+    page: 0,
+    totalPages: 0,
+    totalPhones: 0,
+    products: [],
+  });
   const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     fetchProductos(page)
       .then((data) => {
-        setPhones(data.products);
+        setProductos(data);
       })
       .catch((error) => console.log(error));
   }, [page]);
 
   return (
     <section className="lg:col-span-3 space-y-6">
-      {phones.length > 0 ? (
-        <PhoneList productos={phones} />
+      {productos.products.length > 0 ? (
+        <PhoneList productos={productos} setPage={setPage} />
       ) : (
         <div className="text-center py-12">
           <p className="text-muted-foreground mb-4">

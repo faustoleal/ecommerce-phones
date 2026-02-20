@@ -8,10 +8,11 @@ import {
   CardContent,
 } from "../Card";
 import Button from "../Button";
+import { ProductosState } from "./AdminPage";
 
 interface CreatePhoneFormProps {
   productos: Phone[];
-  setProductos: React.Dispatch<SetStateAction<Phone[]>>;
+  setProductos: React.Dispatch<SetStateAction<ProductosState>>;
 }
 
 const CreatePhoneForm: React.FC<CreatePhoneFormProps> = ({

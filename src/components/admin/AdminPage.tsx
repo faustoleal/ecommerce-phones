@@ -19,9 +19,21 @@ import {
 } from "../Modal";
 import Image from "next/image";
 
+export interface ProductosState {
+  page: number;
+  totalPages: number;
+  totalPhones: number;
+  products: Phone[];
+}
+
 const AdminPage = () => {
   const [selected, setSelected] = useState("pedidos");
-  const [productos, setProductos] = useState<Phone[]>([]);
+  const [productos, setProductos] = useState<ProductosState>({
+    page: 0,
+    totalPages: 0,
+    totalPhones: 0,
+    products: [],
+  });
   const [page, setPage] = useState<number>(1);
   const [selectedOrder, setSelectedOrder] = useState<Pedido | null>(null);
   const { pedidos } = usePedidos();
@@ -29,7 +41,7 @@ const AdminPage = () => {
   useEffect(() => {
     fetchProductos(page)
       .then((data) => {
-        setProductos(data.products);
+        setProductos(data);
       })
       .catch((error) => console.log(error));
   }, [page]);
@@ -141,10 +153,12 @@ const AdminPage = () => {
               setSelectedOrder={setSelectedOrder}
             />
           )}
-          {selected === "productos" && <ProductosTable productos={productos} />}
+          {selected === "productos" && (
+            <ProductosTable productos={productos} setPage={setPage} />
+          )}
           {selected === "agregar" && (
             <CreatePhoneForm
-              productos={productos}
+              productos={productos.products}
               setProductos={setProductos}
             />
           )}

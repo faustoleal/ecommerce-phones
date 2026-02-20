@@ -1,5 +1,4 @@
-import { Phone } from "@/src/types/phones";
-import React from "react";
+import React, { SetStateAction } from "react";
 import {
   Card,
   CardContent,
@@ -20,12 +19,18 @@ import Image from "next/image";
 import Button from "../Button";
 import Link from "next/link";
 import { Eye } from "lucide-react";
+import { ProductosState } from "./AdminPage";
+import Pagination from "../Pagination";
 
 interface ProductosTableProps {
-  productos: Phone[];
+  productos: ProductosState;
+  setPage: React.Dispatch<SetStateAction<number>>;
 }
 
-const ProductosTable: React.FC<ProductosTableProps> = ({ productos }) => {
+const ProductosTable: React.FC<ProductosTableProps> = ({
+  productos,
+  setPage,
+}) => {
   return (
     <div className="text-sm flex-1 outline-none">
       <Card className="border-border">
@@ -46,7 +51,7 @@ const ProductosTable: React.FC<ProductosTableProps> = ({ productos }) => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {productos.map((producto) => (
+              {productos.products.map((producto) => (
                 <TableRow
                   key={producto._id}
                   className="cursor-pointer hover:bg-muted/50 transition-colors"
@@ -87,6 +92,12 @@ const ProductosTable: React.FC<ProductosTableProps> = ({ productos }) => {
               ))}
             </TableBody>
           </Table>
+          <Pagination
+            page={productos.page}
+            totalPages={productos.totalPages}
+            totalPhones={productos.totalPhones}
+            setPage={setPage}
+          />
         </CardContent>
       </Card>
     </div>

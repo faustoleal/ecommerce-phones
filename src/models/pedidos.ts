@@ -27,6 +27,18 @@ const pedidoSchema = new Schema<Pedido>({
     default: "Procesando",
     required: true,
   },
+  envio: {
+    type: Number,
+    required: true,
+  },
+  subtotal: {
+    type: Number,
+    required: true,
+  },
+  total: {
+    type: Number,
+    required: true,
+  },
   date: {
     type: String,
     required: true,

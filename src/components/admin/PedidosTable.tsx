@@ -17,7 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "../Table";
-import StatusCell from "./StatusCell";
+import StatusSelect from "./StatusSelect";
 
 interface PedidosTableProps {
   pedidos: Pedido[];
@@ -90,7 +90,9 @@ const PedidosTable: React.FC<PedidosTableProps> = ({
                       {pedido.status}
                     </div>
                   </TableCell>
-                  <StatusCell status={pedido.status} id={pedido._id} />
+                  <TableCell>
+                    <StatusSelect status={pedido.status} id={pedido._id} />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

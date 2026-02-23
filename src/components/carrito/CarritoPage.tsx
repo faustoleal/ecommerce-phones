@@ -106,8 +106,9 @@ const CarritoPage = () => {
         productos: carrito,
         user: { userId: currentUser._id },
         status: "Procesando",
-        precio: total,
         envio: shipping,
+        subtotal: subtotal,
+        total: total,
         date: new Date().toLocaleDateString("es-AR"),
       });
       toast({

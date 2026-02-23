@@ -304,6 +304,12 @@ const AdminPage = () => {
                     <StatusSelect
                       status={selectedOrder.status}
                       id={selectedOrder._id}
+                      onStatusChange={(newStatus: string) => {
+                        setSelectedOrder((prev) => {
+                          if (!prev) return prev;
+                          return { ...prev, status: newStatus as PedidoStatus };
+                        });
+                      }}
                     />
                   </div>
                 </div>

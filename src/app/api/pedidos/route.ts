@@ -8,7 +8,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   connectDB();
-  const { orderNum, productos, user, status, precio, envio, date } =
+  const { orderNum, productos, user, status, envio, subtotal, total, date } =
     await req.json();
 
   const nuevoPedido = {
@@ -16,8 +16,9 @@ export async function POST(req: Request) {
     productos,
     user,
     status,
-    precio,
     envio,
+    subtotal,
+    total,
     date,
   };
   return crearPedido(nuevoPedido);

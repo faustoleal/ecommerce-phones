@@ -9,7 +9,7 @@ import { Phone } from "@/src/types/phones";
 import { fetchProductos } from "@/src/services/phonesService";
 import ProductosTable from "./ProductosTable";
 import CreatePhoneForm from "./CreatePhoneForm";
-import { Pedido } from "@/src/types/pedidos";
+import { Pedido, PedidoStatus } from "@/src/types/pedidos";
 import {
   Modal,
   ModalContent,
@@ -18,6 +18,7 @@ import {
   ModalTitle,
 } from "../Modal";
 import Image from "next/image";
+import StatusSelect from "./StatusSelect";
 
 export interface ProductosState {
   page: number;
@@ -45,6 +46,19 @@ const AdminPage = () => {
       })
       .catch((error) => console.log(error));
   }, [page]);
+
+  const getPedidoStatusColor = (status: PedidoStatus) => {
+    switch (status) {
+      case "Completado":
+        return "bg-[#06B6D4] text-white";
+      case "Procesando":
+        return "bg-[#8B5CF6] text-white";
+      case "Pendiente":
+        return "bg-[#6366F1] text-white";
+      case "Cancelado":
+        return "bg-[#DF3F40] text-white";
+    }
+  };
 
   return (
     <div className="min-h-screen py-12">
@@ -254,27 +268,44 @@ const AdminPage = () => {
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Subtotal</span>
-                      <span>
-                        $
-                        {selectedOrder.productos.reduce(
-                          (sum, item) =>
-                            sum + item.productoId.price * item.cantidad,
-                          0,
-                        )}
-                      </span>
+                      <span>${selectedOrder.subtotal}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Envio</span>
-                      <span>Gratis</span>
+                      <span>
+                        {selectedOrder.envio === 0
+                          ? "Gratis"
+                          : `$${selectedOrder.envio}`}
+                      </span>
                     </div>
 
                     <div className="flex justify-between font-medium text-lg">
                       <span>Total</span>
-                      <span className="text-[#6366F1]">$2500</span>
+                      <span className="text-[#6366F1]">
+                        ${selectedOrder.total}
+                      </span>
                     </div>
                   </div>
 
                   {/* Status */}
+                  <div className="flex items-center justify-between bg-muted/30 p-4 rounded-lg border border-border">
+                    <div>
+                      <span className="text-sm text-muted-foreground">
+                        Estado actual
+                      </span>
+                      <div className="mt-1">
+                        <div
+                          className={`inline-flex items-center justify-center rounded-full border border-transparent px-2 py-0.5 text-xs font-medium w-fit shrink-0 overflow-hidden ${getPedidoStatusColor(selectedOrder.status)}`}
+                        >
+                          {selectedOrder.status}
+                        </div>
+                      </div>
+                    </div>
+                    <StatusSelect
+                      status={selectedOrder.status}
+                      id={selectedOrder._id}
+                    />
+                  </div>
                 </div>
               </ModalContent>
             </div>

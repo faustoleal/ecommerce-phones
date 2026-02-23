@@ -16,8 +16,9 @@ export interface Pedido {
   productos: CartItemPopulate[];
   user: PedidoUser;
   status: PedidoStatus;
-  precio: number;
   envio: number;
+  subtotal: number;
+  total: number;
   date: string;
 }
 

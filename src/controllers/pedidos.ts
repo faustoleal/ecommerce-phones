@@ -76,7 +76,15 @@ export async function editarPedidoStatus(pedidoId: string, status: string) {
       { _id: pedidoId },
       { $set: { status: status } },
       { new: true },
-    );
+    )
+      .populate({
+        path: "productos.productoId",
+        select: "price model internal_memory ram_capacity",
+      })
+      .populate({
+        path: "user.userId",
+        select: "name username email",
+      });
 
     return NextResponse.json(pedido, { status: 200 });
   } catch (err) {

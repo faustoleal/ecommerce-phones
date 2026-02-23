@@ -45,8 +45,6 @@ export async function crearPedido(pedido: NewPedido) {
         select: "name username email",
       });
 
-    console.log(newPedidoPopultate.user.userId.email);
-
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: newPedidoPopultate.user.userId.email,

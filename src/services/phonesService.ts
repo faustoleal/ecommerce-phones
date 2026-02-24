@@ -1,4 +1,4 @@
-import { Phone } from "../types/phones";
+import { NewProduct, Phone } from "../types/phones";
 
 export async function fecthDestacados(): Promise<{
   apple: Phone[];
@@ -51,6 +51,20 @@ export async function fetchProductosRelacionados(marca: string) {
 
   if (!res.ok) {
     throw new Error("Error al obtener productos relacionados");
+  }
+
+  return res.json();
+}
+
+export async function crearProducto(nuevoProducto: NewProduct) {
+  const res = await fetch(`/api/phones`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(nuevoProducto),
+  });
+
+  if (!res.ok) {
+    throw new Error("Error al crear producto");
   }
 
   return res.json();

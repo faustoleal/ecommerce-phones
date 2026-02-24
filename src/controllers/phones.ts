@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { PhonesModel } from "../models";
+import { NewProduct } from "../types/phones";
 
 export async function listarProductos(req: Request) {
   try {
@@ -73,7 +74,6 @@ export async function getDestacadosPhones() {
 }
 
 export async function getRelacionadosPhones(marca: string) {
-  console.log(marca);
   try {
     const relacionados = await PhonesModel.find({
       brand_name: `${marca}`,
@@ -83,6 +83,20 @@ export async function getRelacionadosPhones(marca: string) {
     console.log(err);
     return NextResponse.json(
       { message: "Error al obtener productos relacionados" },
+      { status: 500 },
+    );
+  }
+}
+
+export async function postProducto(phone: NewProduct) {
+  try {
+    const newPhone = await PhonesModel.create(phone);
+
+    return NextResponse.json(newPhone, { status: 201 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { message: "Error interno del servidor", error },
       { status: 500 },
     );
   }

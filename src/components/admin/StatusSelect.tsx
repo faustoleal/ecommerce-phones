@@ -14,7 +14,7 @@ import { useToast } from "@/src/context/ToastContext";
 interface StatusCellProps {
   status: string;
   id: string;
-  onStatusChange: (newStatus: string) => void;
+  onStatusChange?: (newStatus: string) => void;
 }
 
 const StatusSelect: React.FC<StatusCellProps> = ({
@@ -39,7 +39,7 @@ const StatusSelect: React.FC<StatusCellProps> = ({
     e.stopPropagation();
     try {
       await editarStatus(id, status);
-      onStatusChange(status);
+      onStatusChange?.(status);
       toast({
         variant: "success",
         title: "Éxito:",

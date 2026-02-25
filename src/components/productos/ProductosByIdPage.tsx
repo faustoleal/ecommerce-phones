@@ -186,7 +186,8 @@ const ProductosByIdPage = ({ id }: { id: string }) => {
             {/* Stock */}
             <div className="p-4 bg-muted/50 rounded-lg border border-border">
               <p className="text-sm">
-                <span className="font-medium">Stock disponible:</span> 12
+                <span className="font-medium">Stock disponible:</span>{" "}
+                {producto.stock} {""}
                 unidades
               </p>
             </div>

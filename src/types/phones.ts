@@ -33,6 +33,7 @@ export interface Phone {
   brand_name: Brands;
   model: string;
   price: number;
+  stock: number;
   rating: number;
   has_5g: boolean;
   has_nfc: boolean;

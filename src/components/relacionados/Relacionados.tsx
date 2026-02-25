@@ -19,8 +19,6 @@ const Relacionados = ({ marca }: { marca: string }) => {
       .catch((error) => console.log(error));
   }, [marca]);
 
-  console.log(productosRelacionados);
-
   return (
     <>
       {productosRelacionados !== undefined && (

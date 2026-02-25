@@ -15,6 +15,12 @@ const phonesSchema = new Schema<Phone>({
     type: Number,
     required: true,
   },
+  stock: {
+    type: Number,
+    required: true,
+    default: 0,
+    min: 0,
+  },
   rating: {
     type: Number,
     required: true,

@@ -1,6 +1,6 @@
 "use client";
 
-import { Brands, Os, Phone, Processor } from "@/src/types/phones";
+import { Brands, NewProduct, Os, Phone, Processor } from "@/src/types/phones";
 import React, { SetStateAction, useState } from "react";
 import {
   Card,
@@ -11,49 +11,80 @@ import {
 } from "../Card";
 import Button from "../Button";
 import { ProductosState } from "./AdminPage";
+import { useToast } from "@/src/context/ToastContext";
+import { crearProducto } from "@/src/services/phonesService";
 
 interface CreatePhoneFormProps {
   productos: Phone[];
   setProductos: React.Dispatch<SetStateAction<ProductosState>>;
 }
 
+interface PhoneForm {
+  model: string;
+  brand_name: string;
+  price: string;
+  stock: string;
+  rating: string;
+  processor_brand: string;
+  processor_speed: string;
+  num_cores: string;
+  os: string;
+  internal_memory: string;
+  ram_capacity: string;
+  extended_memory_available: string;
+  screen_size: string;
+  resolution_width: string;
+  resolution_height: string;
+  battery_capacity: string;
+  fast_charging_available: string;
+  num_front_cameras: string;
+  primary_camera_front: string;
+  num_rear_cameras: string;
+  primary_camera_rear: string;
+  has_5g: string;
+  has_nfc: string;
+  has_ir_blaster: string;
+}
+
+const initialForm: PhoneForm = {
+  model: "",
+  brand_name: "",
+  price: "0",
+  stock: "0",
+  rating: "0",
+  processor_brand: "",
+  processor_speed: "0",
+  num_cores: "0",
+  os: "",
+  internal_memory: "0",
+  ram_capacity: "0",
+  extended_memory_available: "true",
+  screen_size: "0",
+  resolution_width: "0",
+  resolution_height: "0",
+  battery_capacity: "0",
+  fast_charging_available: "true",
+  num_front_cameras: "0",
+  primary_camera_front: "0",
+  num_rear_cameras: "0",
+  primary_camera_rear: "0",
+  has_5g: "true",
+  has_nfc: "true",
+  has_ir_blaster: "true",
+};
+
 const CreatePhoneForm: React.FC<CreatePhoneFormProps> = ({
   productos,
   setProductos,
 }) => {
-  const [form, setForm] = useState({
-    model: "",
-    brand_name: "",
-    price: 0,
-    rating: 0,
-    processor_brand: "",
-    processor_speed: 0,
-    num_cores: 0,
-    os: "",
-    internal_memory: 0,
-    ram_capacity: 0,
-    extended_memory_available: "true",
-    screen_size: 0,
-    resolution_width: 0,
-    resolution_height: 0,
-    battery_capacity: 0,
-    fast_charging_available: "true",
-    num_front_cameras: 0,
-    primary_camera_front: 0,
-    num_rear_cameras: 0,
-    primary_camera_rear: 0,
-    has_5g: "true",
-    has_nfc: "true",
-    has_ir_blaster: "true",
-  });
+  const [form, setForm] = useState<PhoneForm>(initialForm);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const { toast } = useToast();
 
   const brands: Brands[] = Object.values(Brands) as Brands[];
   const processors: Processor[] = Object.values(Processor) as Processor[];
   const os: Os[] = Object.values(Os) as Os[];
-
-  function toBoolean(value: string): boolean {
-    return value.toLowerCase() === "true";
-  }
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -66,6 +97,72 @@ const CreatePhoneForm: React.FC<CreatePhoneFormProps> = ({
     }));
   }
 
+  function mapFormToPhone(form: PhoneForm): NewProduct {
+    return {
+      model: form.model,
+      brand_name: form.brand_name as Brands,
+      price: Number(form.price),
+      stock: Number(form.stock),
+      rating: Number(form.rating),
+      processor_brand: form.processor_brand as Processor,
+      processor_speed: Number(form.processor_speed),
+      num_cores: Number(form.num_cores),
+      os: form.os as Os,
+      internal_memory: Number(form.internal_memory),
+      ram_capacity: Number(form.ram_capacity),
+      extended_memory_available: form.extended_memory_available === "true",
+      screen_size: Number(form.screen_size),
+      resolution_width: Number(form.resolution_width),
+      resolution_height: Number(form.resolution_height),
+      battery_capacity: Number(form.battery_capacity),
+      fast_charging_available: form.fast_charging_available === "true",
+      num_front_cameras: Number(form.num_front_cameras),
+      primary_camera_front: Number(form.primary_camera_front),
+      num_rear_cameras: Number(form.num_rear_cameras),
+      primary_camera_rear: Number(form.primary_camera_rear),
+      has_5g: form.has_5g === "true",
+      has_nfc: form.has_nfc === "true",
+      has_ir_blaster: form.has_ir_blaster === "true",
+    };
+  }
+
+  async function createNewPhone(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const newPhone: NewProduct = mapFormToPhone(form);
+    try {
+      const user = await crearProducto(newPhone);
+      if (user) {
+        toast({
+          variant: "success",
+          title: "Creacion existosa:",
+          description: `Agregaste este item ${form.model}`,
+        });
+      } else {
+        toast({
+          variant: "error",
+          title: "Error:",
+          description: "Ocurrió un error al agregar nuevo celular.",
+        });
+      }
+    } catch (err: unknown) {
+      let errMsg = "Error al crear nuevo celular, revise los datos.";
+
+      if (err instanceof Error) {
+        errMsg = err.message;
+      }
+
+      toast({
+        variant: "error",
+        title: "Datos inválidos:",
+        description: errMsg,
+      });
+
+      setForm(initialForm);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="text-sm flex-1 outline-none">
       <Card className="border border-border max-w-2xl">
@@ -76,7 +173,7 @@ const CreatePhoneForm: React.FC<CreatePhoneFormProps> = ({
           </CardDescription>
         </CardHeader>
         <CardContent className="px-4">
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={createNewPhone}>
             {/* Nombre y marca */}
 
             <div className="grid sm:grid-cols-2 gap-4">
@@ -96,7 +193,7 @@ const CreatePhoneForm: React.FC<CreatePhoneFormProps> = ({
               <div className="space-y-2">
                 <label className="text-sm font-medium">Marca</label>
                 <select
-                  name="brand-name"
+                  name="brand_name"
                   className="w-full px-3 py-2 border border-[#E3E6EA] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
                   value={form.brand_name}
                   onChange={handleChange}
@@ -130,6 +227,8 @@ const CreatePhoneForm: React.FC<CreatePhoneFormProps> = ({
                   name="stock"
                   type="number"
                   className="w-full px-3 py-2 border border-[#E3E6EA] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
+                  value={form.stock}
+                  onChange={handleChange}
                   placeholder="50"
                 />
               </div>
@@ -339,6 +438,7 @@ const CreatePhoneForm: React.FC<CreatePhoneFormProps> = ({
                   type="number"
                   className="w-full px-3 py-2 border border-[#E3E6EA] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
                   value={form.primary_camera_front}
+                  onChange={handleChange}
                   placeholder="16"
                 />
               </div>
@@ -417,7 +517,7 @@ const CreatePhoneForm: React.FC<CreatePhoneFormProps> = ({
               type="submit"
               className="w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white font-medium h-8 gap-1.5 px-2.5"
             >
-              Agregar Producto
+              {loading ? "...agregando Producto" : "Agregar Producto"}
             </Button>
           </form>
         </CardContent>

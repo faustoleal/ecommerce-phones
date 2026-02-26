@@ -1,5 +1,6 @@
 import { actualizarCantidad, eliminarItem } from "@/src/controllers/carrito";
 import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server";
 
 export async function DELETE(
   request: Request,
@@ -23,7 +24,7 @@ export async function DELETE(
       process.env.SECRET as string,
     );
 
-    return Response.json({ ...data, newToken }, { status: 200 });
+    return NextResponse.json({ ...data, newToken }, { status: 200 });
   }
 
   return response;
@@ -51,7 +52,7 @@ export async function PUT(
       process.env.SECRET as string,
     );
 
-    return Response.json({ ...data, newToken }, { status: 200 });
+    return NextResponse.json({ ...data, newToken }, { status: 200 });
   }
 
   return response;

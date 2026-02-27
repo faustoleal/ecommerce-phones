@@ -33,9 +33,10 @@ export async function DELETE(
 export async function PUT(
   request: NextRequest,
   context: { params: { id: string; productoId: string } },
-): Promise<NextResponse> {
+) {
   const { id, productoId } = context.params;
   const { cantidad } = await request.json();
+
   const response = await actualizarCantidad(id, productoId, cantidad);
 
   if (response.status === 200) {

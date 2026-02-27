@@ -6,7 +6,7 @@ export async function DELETE(
   request: NextRequest,
   context: { params: { id: string; productoId: string } },
 ): Promise<NextResponse> {
-  const { id, productoId } = context.params;
+  const { id, productoId } = await context.params;
   //console.log(id);
   const response = await eliminarItem(id, productoId);
 
@@ -34,7 +34,7 @@ export async function PUT(
   request: NextRequest,
   context: { params: { id: string; productoId: string } },
 ): Promise<NextResponse> {
-  const { id, productoId } = context.params;
+  const { id, productoId } = await context.params;
   const { cantidad } = await request.json();
 
   const response = await actualizarCantidad(id, productoId, cantidad);

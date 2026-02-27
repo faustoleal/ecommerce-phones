@@ -10,7 +10,7 @@ export async function POST(
   connectDB();
   const { cantidad, productoId } = await request.json();
   const cart = { productoId, cantidad };
-  const { id } = context.params;
+  const { id } = await context.params;
   const response = await acutalizarCarrito(cart, id);
 
   // Si la respuesta es exitosa, generar un nuevo token
@@ -38,7 +38,7 @@ export async function DELETE(
   request: NextRequest,
   context: { params: { id: string } },
 ): Promise<NextResponse> {
-  const { id } = context.params;
+  const { id } = await context.params;
   //console.log(id);
   const response = await vaciarCarrito(id);
 

@@ -1,13 +1,13 @@
 import { actualizarCantidad, eliminarItem } from "@/src/controllers/carrito";
 import jwt from "jsonwebtoken";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string; productoId: string } },
-) {
-  const { id, productoId } = await params;
-  console.log(id);
+  request: NextRequest,
+  context: { params: { id: string; productoId: string } },
+): Promise<NextResponse> {
+  const { id, productoId } = context.params;
+  //console.log(id);
   const response = await eliminarItem(id, productoId);
 
   if (response.status === 200) {
@@ -31,10 +31,10 @@ export async function DELETE(
 }
 
 export async function PUT(
-  request: Request,
-  { params }: { params: { id: string; productoId: string } },
-) {
-  const { id, productoId } = await params;
+  request: NextRequest,
+  context: { params: { id: string; productoId: string } },
+): Promise<NextResponse> {
+  const { id, productoId } = context.params;
   const { cantidad } = await request.json();
   const response = await actualizarCantidad(id, productoId, cantidad);
 

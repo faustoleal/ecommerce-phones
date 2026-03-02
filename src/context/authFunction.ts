@@ -1,4 +1,4 @@
-import { CartItem, DecodeUser, UserRole } from "@/src/types/user";
+import { CartItemPopulate, DecodeUser, UserRole } from "@/src/types/user";
 import { jwtDecode } from "jwt-decode";
 
 interface DecodedToken {
@@ -7,7 +7,7 @@ interface DecodedToken {
   username: string;
   email: string;
   role: UserRole;
-  carrito: CartItem[];
+  carrito: CartItemPopulate[];
 }
 
 export const decodedToken = (token: string): DecodeUser | null => {
@@ -29,7 +29,7 @@ export const decodedToken = (token: string): DecodeUser | null => {
 
 export const loginUser = async (
   email: string,
-  password: string
+  password: string,
 ): Promise<string> => {
   const res = await fetch("/api/login", {
     method: "POST",

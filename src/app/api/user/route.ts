@@ -1,10 +1,10 @@
-import { crearUsuario, getUsuarios } from "@/src/controllers/user";
+import { postUser, getUsers } from "@/src/controllers/user";
 import { connectDB } from "@/src/lib/db";
 import { NextRequest } from "next/server";
 
 export async function GET() {
   connectDB();
-  return getUsuarios();
+  return getUsers();
 }
 
 export async function POST(req: NextRequest) {
@@ -12,5 +12,5 @@ export async function POST(req: NextRequest) {
   const { name, username, email, password, role } = await req.json();
 
   const nuevoUsuario = { name, username, email, password, role };
-  return crearUsuario(nuevoUsuario);
+  return postUser(nuevoUsuario);
 }

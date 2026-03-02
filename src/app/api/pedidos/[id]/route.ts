@@ -1,4 +1,4 @@
-import { editarPedidoStatus } from "@/src/controllers/pedidos";
+import { putPedidoStatus } from "@/src/controllers/pedidos";
 import { connectDB } from "@/src/lib/db";
 import { NextRequest } from "next/server";
 
@@ -15,5 +15,5 @@ export async function PUT(
 
   connectDB();
 
-  return editarPedidoStatus(id, status);
+  return putPedidoStatus(id, status);
 }

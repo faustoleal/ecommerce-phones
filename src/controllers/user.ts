@@ -3,7 +3,7 @@ import { UserModel } from "../models";
 import { NewUser } from "../types/user";
 import bcrypt from "bcrypt";
 
-export async function getUsuarios() {
+export async function getUsers() {
   try {
     const users = await UserModel.find().populate("carrito.productoId");
     console.log(users);
@@ -42,7 +42,7 @@ export async function getUserById(id: string) {
   }
 }
 
-export async function crearUsuario(nuevoUsuario: NewUser) {
+export async function postUser(nuevoUsuario: NewUser) {
   const { name, username, email, password, role } = nuevoUsuario;
   try {
     const existingUser = await UserModel.findOne({

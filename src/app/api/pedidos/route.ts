@@ -1,4 +1,4 @@
-import { crearPedido, getPedidos } from "@/src/controllers/pedidos";
+import { postPedido, getPedidos } from "@/src/controllers/pedidos";
 import { connectDB } from "@/src/lib/db";
 import { NextRequest } from "next/server";
 
@@ -22,5 +22,5 @@ export async function POST(req: NextRequest) {
     total,
     date,
   };
-  return crearPedido(nuevoPedido);
+  return postPedido(nuevoPedido);
 }

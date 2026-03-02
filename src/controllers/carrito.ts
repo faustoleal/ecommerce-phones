@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { CartItem } from "../types/user";
 import { UserModel } from "../models";
 
-export async function acutalizarCarrito(cart: CartItem, id: string) {
+export async function postCarrito(cart: CartItem, id: string) {
   try {
     const { productoId, cantidad } = cart;
 
@@ -46,7 +46,7 @@ export async function acutalizarCarrito(cart: CartItem, id: string) {
   }
 }
 
-export async function vaciarCarrito(id: string) {
+export async function clearCarrito(id: string) {
   try {
     const user = await UserModel.findByIdAndUpdate(id, {
       $set: { carrito: [] },
@@ -66,7 +66,7 @@ export async function vaciarCarrito(id: string) {
   }
 }
 
-export async function eliminarItem(id: string, productoId: string) {
+export async function deleteCarritoItem(id: string, productoId: string) {
   try {
     if (!productoId) {
       return NextResponse.json({ message: "Datos inválidos" }, { status: 400 });
@@ -93,7 +93,7 @@ export async function eliminarItem(id: string, productoId: string) {
   }
 }
 
-export async function actualizarCantidad(
+export async function putCantidad(
   id: string,
   productoId: string,
   cantidad: number,

@@ -1,4 +1,4 @@
-import { acutalizarCarrito, vaciarCarrito } from "@/src/controllers/carrito";
+import { postCarrito, clearCarrito } from "@/src/controllers/carrito";
 import { connectDB } from "@/src/lib/db";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
@@ -15,7 +15,7 @@ export async function POST(
   const { cantidad, productoId } = await req.json();
   const cart = { productoId, cantidad };
   const { id } = await context.params;
-  const response = await acutalizarCarrito(cart, id);
+  const response = await postCarrito(cart, id);
 
   // Si la respuesta es exitosa, generar un nuevo token
   if (response.status === 200) {
@@ -46,7 +46,7 @@ export async function DELETE(
 ): Promise<NextResponse> {
   const { id } = await context.params;
   //console.log(id);
-  const response = await vaciarCarrito(id);
+  const response = await clearCarrito(id);
 
   if (response.status === 200) {
     const data = await response.json();

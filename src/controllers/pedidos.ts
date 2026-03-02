@@ -31,7 +31,7 @@ export async function getPedidos() {
   }
 }
 
-export async function crearPedido(pedido: NewPedido) {
+export async function postPedido(pedido: NewPedido) {
   try {
     const newPedido = await PedidoModel.create(pedido);
 
@@ -66,7 +66,7 @@ export async function crearPedido(pedido: NewPedido) {
   }
 }
 
-export async function editarPedidoStatus(pedidoId: string, status: string) {
+export async function putPedidoStatus(pedidoId: string, status: string) {
   try {
     if (!pedidoId) {
       return NextResponse.json({ message: "Datos inválidos" }, { status: 400 });

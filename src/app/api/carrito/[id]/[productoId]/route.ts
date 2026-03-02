@@ -1,4 +1,4 @@
-import { actualizarCantidad, eliminarItem } from "@/src/controllers/carrito";
+import { putCantidad, deleteCarritoItem } from "@/src/controllers/carrito";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -13,7 +13,7 @@ export async function DELETE(
 ): Promise<Response> {
   const { id, productoId } = await context.params;
   //console.log(id);
-  const response = await eliminarItem(id, productoId);
+  const response = await deleteCarritoItem(id, productoId);
 
   if (response.status === 200) {
     const data = await response.json();
@@ -42,7 +42,7 @@ export async function PUT(
   const { id, productoId } = await context.params;
   const { cantidad } = await req.json();
 
-  const response = await actualizarCantidad(id, productoId, cantidad);
+  const response = await putCantidad(id, productoId, cantidad);
 
   if (response.status === 200) {
     const data = await response.json();

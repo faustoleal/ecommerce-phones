@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { PhonesModel } from "../models";
 import { NewProduct } from "../types/phones";
 
-export async function listarProductos(req: Request) {
+export async function getPhones(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") || "1", 10);
@@ -88,7 +88,7 @@ export async function getRelacionadosPhones(marca: string) {
   }
 }
 
-export async function postProducto(phone: NewProduct) {
+export async function postPhone(phone: NewProduct) {
   try {
     const newPhone = await PhonesModel.create(phone);
 

@@ -1,10 +1,10 @@
 import { connectDB } from "@/src/lib/db";
-import { listarProductos, postProducto } from "../../../controllers/phones";
+import { getPhones, postPhone } from "../../../controllers/phones";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   connectDB();
-  return listarProductos(req);
+  return getPhones(req);
 }
 
 export async function POST(req: NextRequest) {
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     has_ir_blaster,
   } = await req.json();
 
-  return postProducto({
+  return postPhone({
     model,
     brand_name,
     price,

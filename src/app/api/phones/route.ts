@@ -1,12 +1,13 @@
 import { connectDB } from "@/src/lib/db";
 import { listarProductos, postProducto } from "../../../controllers/phones";
+import { NextRequest } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   connectDB();
   return listarProductos(req);
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   connectDB();
   const {
     model,

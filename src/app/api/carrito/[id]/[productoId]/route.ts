@@ -2,10 +2,15 @@ import { actualizarCantidad, eliminarItem } from "@/src/controllers/carrito";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 
+type Params = {
+  id: string;
+  productoId: string;
+};
+
 export async function DELETE(
-  request: NextRequest,
-  context: { params: { id: string; productoId: string } },
-): Promise<NextResponse> {
+  req: NextRequest,
+  context: { params: Promise<Params> },
+): Promise<Response> {
   const { id, productoId } = await context.params;
   //console.log(id);
   const response = await eliminarItem(id, productoId);
@@ -31,11 +36,11 @@ export async function DELETE(
 }
 
 export async function PUT(
-  request: NextRequest,
-  context: { params: { id: string; productoId: string } },
+  req: NextRequest,
+  context: { params: Promise<Params> },
 ): Promise<NextResponse> {
   const { id, productoId } = await context.params;
-  const { cantidad } = await request.json();
+  const { cantidad } = await req.json();
 
   const response = await actualizarCantidad(id, productoId, cantidad);
 

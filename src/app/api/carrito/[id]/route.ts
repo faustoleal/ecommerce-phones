@@ -3,12 +3,16 @@ import { connectDB } from "@/src/lib/db";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 
+type Params = {
+  id: string;
+};
+
 export async function POST(
-  request: NextRequest,
-  context: { params: { id: string } },
+  req: NextRequest,
+  context: { params: Promise<Params> },
 ): Promise<NextResponse> {
   connectDB();
-  const { cantidad, productoId } = await request.json();
+  const { cantidad, productoId } = await req.json();
   const cart = { productoId, cantidad };
   const { id } = await context.params;
   const response = await acutalizarCarrito(cart, id);
@@ -35,8 +39,10 @@ export async function POST(
 }
 
 export async function DELETE(
-  request: NextRequest,
-  context: { params: { id: string } },
+  req: NextRequest,
+  context: {
+    params: Promise<Params>;
+  },
 ): Promise<NextResponse> {
   const { id } = await context.params;
   //console.log(id);

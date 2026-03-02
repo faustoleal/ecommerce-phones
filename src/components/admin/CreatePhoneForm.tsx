@@ -10,7 +10,7 @@ import {
   CardContent,
 } from "../Card";
 import Button from "../Button";
-import { ProductosState } from "./AdminPage";
+import { ProductosState } from "../views/AdminPage";
 import { useToast } from "@/src/context/ToastContext";
 import { crearProducto } from "@/src/services/phonesService";
 

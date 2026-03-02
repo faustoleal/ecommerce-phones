@@ -1,10 +1,11 @@
-import ProductosByIdPage from "@/src/components/productos/ProductosByIdPage";
+import ProductosByIdPage from "@/src/components/views/ProductosByIdPage";
 
-const ProductosByID = async ({ params }: { params: { id: string } }) => {
+export default async function ProductosByID({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = await params;
-  console.log(id);
 
   return <ProductosByIdPage id={id} />;
-};
-
-export default ProductosByID;
+}

@@ -1,7 +1,5 @@
-import AdminPage from "@/src/components/admin/AdminPage";
+import AdminPage from "@/src/components/views/AdminPage";
 
-const Admin = () => {
+export default function Admin() {
   return <AdminPage />;
-};
-
-export default Admin;
+}

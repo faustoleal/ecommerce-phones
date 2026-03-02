@@ -4,11 +4,11 @@ import { usePedidos } from "@/src/context/PedidosContext";
 import { Card, CardContent } from "../Card";
 import { DollarSign, Package, ShoppingCart, TrendingUp, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import PedidosTable from "./PedidosTable";
+import PedidosTable from "../admin/PedidosTable";
 import { Phone } from "@/src/types/phones";
 import { fetchProductos } from "@/src/services/phonesService";
-import ProductosTable from "./ProductosTable";
-import CreatePhoneForm from "./CreatePhoneForm";
+import ProductosTable from "../admin/ProductosTable";
+import CreatePhoneForm from "../admin/CreatePhoneForm";
 import { Pedido, PedidoStatus } from "@/src/types/pedidos";
 import {
   Modal,
@@ -18,7 +18,7 @@ import {
   ModalTitle,
 } from "../Modal";
 import Image from "next/image";
-import StatusSelect from "./StatusSelect";
+import StatusSelect from "../admin/StatusSelect";
 
 export interface ProductosState {
   page: number;

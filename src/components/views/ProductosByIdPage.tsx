@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import RatingEstrellas from "../RatingEstrellas";
 import Button from "../Button";
 import { useApp } from "@/src/context/UserContext";
-import Relacionados from "../relacionados/Relacionados";
+import Relacionados from "../productos/Relacionados";
 
 const ProductosByIdPage = ({ id }: { id: string }) => {
   const [producto, setProducto] = useState<Phone | undefined>(undefined);

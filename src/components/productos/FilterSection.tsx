@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
-import Label from "./Label";
-import Input from "./Input";
-import Button from "./Button";
+import Label from "../Label";
+import Input from "../Input";
+import Button from "../Button";
 
 const FilterSection = () => {
   return (

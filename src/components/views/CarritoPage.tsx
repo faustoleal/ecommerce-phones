@@ -8,8 +8,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "../Card";
 import { useToast } from "@/src/context/ToastContext";
-import NotUserCarrito from "./NotUserCarrito";
-import NotContentCarrito from "./NotContentCarrito";
+import NotUserCarrito from "../carrito/NotUserCarrito";
+import NotContentCarrito from "../carrito/NotContentCarrito";
 import { usePedidos } from "@/src/context/PedidosContext";
 
 const CarritoPage = () => {

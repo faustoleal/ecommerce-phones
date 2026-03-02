@@ -2,8 +2,8 @@ import { Phone } from "@/src/types/phones";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent } from "../Card";
-import Button from "../Button";
+import { Card, CardContent } from "../../Card";
+import Button from "../../Button";
 
 const DestacadosSection = ({
   titulo,

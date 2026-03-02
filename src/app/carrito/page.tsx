@@ -1,7 +1,5 @@
-import CarritoPage from "@/src/components/carrito/CarritoPage";
+import CarritoPage from "@/src/components/views/CarritoPage";
 
-const Carrito = () => {
+export default function Carrito() {
   return <CarritoPage />;
-};
-
-export default Carrito;
+}

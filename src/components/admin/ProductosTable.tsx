@@ -19,7 +19,7 @@ import Image from "next/image";
 import Button from "../Button";
 import Link from "next/link";
 import { Eye } from "lucide-react";
-import { ProductosState } from "./AdminPage";
+import { ProductosState } from "../views/AdminPage";
 import Pagination from "../Pagination";
 
 interface ProductosTableProps {

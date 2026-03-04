@@ -88,7 +88,7 @@ ecommerce-phones/
 |   |   ├── productos/
 |   |   |   ├── [id]/page.tsx
 |   |   |   └── page.tsx
-|   |   ├── register.tsx
+|   |   ├── register/page.tsx
 |   |   ├── favicon.ico
 |   |   ├── globals.css
 |   |   ├── layout.tsx

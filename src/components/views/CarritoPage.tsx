@@ -1,12 +1,12 @@
 "use client";
 
 import { useApp } from "@/src/context/UserContext";
-import Button from "../Button";
+import Button from "../ui/Button";
 import { ArrowLeft, Minus, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Card, CardContent } from "../Card";
+import { Card, CardContent } from "../display/Card";
 import { useToast } from "@/src/context/ToastContext";
 import NotUserCarrito from "../carrito/NotUserCarrito";
 import NotContentCarrito from "../carrito/NotContentCarrito";

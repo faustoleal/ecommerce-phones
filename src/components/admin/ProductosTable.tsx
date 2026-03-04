@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../Card";
+} from "../display/Card";
 
 import {
   Table,
@@ -14,13 +14,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../Table";
+} from "../display/Table";
 import Image from "next/image";
-import Button from "../Button";
+import Button from "../ui/Button";
 import Link from "next/link";
 import { Eye } from "lucide-react";
 import { ProductosState } from "../views/AdminPage";
-import Pagination from "../Pagination";
+import Pagination from "../ui/Pagination";
 
 interface ProductosTableProps {
   productos: ProductosState;

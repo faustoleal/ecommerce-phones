@@ -1,9 +1,9 @@
 "use client";
 
 import { LogIn } from "lucide-react";
-import Button from "../Button";
-import Label from "../Label";
-import Input from "../Input";
+import Button from "../ui/Button";
+import Label from "../ui/Label";
+import Input from "../ui/Input";
 import React, { useState } from "react";
 import { useApp } from "@/src/context/UserContext";
 import { useToast } from "@/src/context/ToastContext";

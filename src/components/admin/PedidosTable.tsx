@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../Card";
+} from "../display/Card";
 import {
   Table,
   TableBody,
@@ -16,7 +16,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../Table";
+} from "../display/Table";
 import StatusSelect from "./StatusSelect";
 
 interface PedidosTableProps {

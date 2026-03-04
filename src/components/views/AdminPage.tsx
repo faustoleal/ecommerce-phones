@@ -1,7 +1,7 @@
 "use client";
 
 import { usePedidos } from "@/src/context/PedidosContext";
-import { Card, CardContent } from "../Card";
+import { Card, CardContent } from "../display/Card";
 import { DollarSign, Package, ShoppingCart, TrendingUp, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import PedidosTable from "../admin/PedidosTable";
@@ -16,7 +16,7 @@ import {
   ModalDescription,
   ModalHeader,
   ModalTitle,
-} from "../Modal";
+} from "../display/Modal";
 import Image from "next/image";
 import StatusSelect from "../admin/StatusSelect";
 

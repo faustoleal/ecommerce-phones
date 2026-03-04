@@ -1,9 +1,9 @@
 "use client";
 
 import { UserPlus } from "lucide-react";
-import Button from "../Button";
-import Input from "../Input";
-import Label from "../Label";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import Label from "../ui/Label";
 import React, { useState } from "react";
 import { useToast } from "@/src/context/ToastContext";
 import { registrarUsuario } from "@/src/services/userService";

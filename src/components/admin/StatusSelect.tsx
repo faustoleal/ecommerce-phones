@@ -7,7 +7,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../Select";
+} from "../ui/Select";
 import { usePedidos } from "@/src/context/PedidosContext";
 import { useToast } from "@/src/context/ToastContext";
 

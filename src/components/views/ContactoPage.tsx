@@ -1,13 +1,8 @@
-import Button from "@/src/components/Button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/Card";
-import Input from "@/src/components/Input";
-import Label from "@/src/components/Label";
-import Textaerea from "@/src/components/Textarea";
+import Button from "../ui/Button";
+import { Card, CardContent, CardHeader, CardTitle } from "../display/Card";
+import Input from "../ui/Input";
+import Label from "../ui/Label";
+import Textaerea from "../ui/Textarea";
 import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 
 const ContactoPage = () => {

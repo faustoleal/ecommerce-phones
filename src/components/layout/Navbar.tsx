@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { Phone, Moon, ShoppingCart, User, LogOut } from "lucide-react";
-import { useApp } from "../context/UserContext";
-import Button from "./Button";
+import { useApp } from "@/src/context/UserContext";
+import Button from "../ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,

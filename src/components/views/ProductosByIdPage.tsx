@@ -6,8 +6,8 @@ import { ArrowLeft, Check, Shield, ShoppingCart, Truck } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import RatingEstrellas from "../RatingEstrellas";
-import Button from "../Button";
+import RatingEstrellas from "../ui/RatingEstrellas";
+import Button from "../ui/Button";
 import { useApp } from "@/src/context/UserContext";
 import Relacionados from "../productos/Relacionados";
 

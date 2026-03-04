@@ -3,7 +3,7 @@
 import { fetchProductos } from "@/src/services/phonesService";
 import { useEffect, useState } from "react";
 import PhoneList from "./PhoneList";
-import { ProductosState } from "../admin/AdminPage";
+import { ProductosState } from "../views/AdminPage";
 
 const PhoneSection = () => {
   const [productos, setProductos] = useState<ProductosState>({

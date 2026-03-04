@@ -8,8 +8,8 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-} from "../Card";
-import Button from "../Button";
+} from "../display/Card";
+import Button from "../ui/Button";
 import { ProductosState } from "../views/AdminPage";
 import { useToast } from "@/src/context/ToastContext";
 import { crearProducto } from "@/src/services/phonesService";

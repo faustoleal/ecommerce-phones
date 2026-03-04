@@ -1,5 +1,5 @@
-import FilterSection from "@/src/components/productos/FilterSection";
-import PhoneSection from "@/src/components/productos/PhoneSection";
+import FilterSection from "../productos/FilterSection";
+import PhoneSection from "../productos/PhoneSection";
 import { Filter } from "lucide-react";
 
 const ProductosPage = () => {

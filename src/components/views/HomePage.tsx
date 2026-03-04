@@ -1,8 +1,8 @@
 import { ArrowRight, Shield, Truck, Zap } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import Destacados from "../productos/destacados/Destacados";
-import Button from "../Button";
+import Destacados from "../productos/Destacados";
+import Button from "../ui/Button";
 
 const HomePage = () => {
   return (

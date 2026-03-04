@@ -6,8 +6,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/src/components/Card";
-import CreateAccountForm from "@/src/components/forms/CreateAccountForm";
+} from "../display/Card";
+import CreateAccountForm from "../forms/CreateAccountForm";
 
 const RegisterPage = () => {
   return (

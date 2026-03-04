@@ -1,4 +1,4 @@
-# Hermanos Jota V1
+# Ecommerce Phones
 
 Proyecto final ITBA - E-commerce de muebles premium
 
@@ -102,48 +102,82 @@ ecommerce-phones/
 |   |   ├── carrito/
 |   |   |   ├── NotContentCarrito.tsx
 |   |   |   └── NotUserCarrito.tsx
+|   |   ├── display/
+|   |   |   ├── Card.tsx
+|   |   |   ├── Modal.tsx
+|   |   |   └── Table.tsx
+|   |   ├── feedback/
+|   |   |   ├── Toaster.tsx
+|   |   |   └── ToasterContainer.tsx
 |   |   ├── forms/
 |   |   |   ├── CreateAccountForm.tsx
 |   |   |   └── LoginForm.tsx
+|   |   ├── layout/
+|   |   |   ├── DropdownMenu.tsx
+|   |   |   ├── Footer.tsx
+|   |   |   ├── MobileMenu.tsx
+|   |   |   └── Navbar.tsx
 |   |   ├── productos/
-|   |   |   ├── destacados/
-|   |   |   |   ├── Destacados.tsx
-|   |   |   |   └── DestacadosSection.tsx
+|   |   |   ├── Destacados.tsx
+|   |   |   ├── DestacadosSection.tsx
 |   |   |   ├── FiltroSection.tsx
 |   |   |   ├── PhoneList.tsx
 |   |   |   ├── PhoneSection.tsx
 |   |   |   └── Relacionados.tsx
-|   |   ├── views/
-|   |   |   ├── AdminPage.tsx
-|   |   |   ├── CarritoPage.tsx
-|   |   |   ├── ContactoPage.tsx
-|   |   |   ├── HomePage.tsx
-|   |   |   ├── LoginPage.tsx
-|   |   |   ├── ProductosByIdPage.tsx
-|   |   |   ├── ProductosPage.tsx
-|   |   |   └── RegisterPage.tsx
-|   |   └── dbConfig.js
-|   ├── routes/
-|   |   ├── loginRoutes.js
-|   |   ├── productRoutes.js
-|   |   └── userRoutes.js
-|   ├── middleware.js
-|   ├── server.js
-|   └── ...
-├── client/hermanos-jota
-|   ├── public/
-|   |   └── assets
-│   ├── src/
-|   |   ├── api/
-│   │   ├── components/
-|   |   |   ├── ProtectedRoute/
-|   |   |   ├── screen/
-|   |   |   └── ui/
-│   │   ├── context/
-|   |   ├── hooks/
-|   |   └── ...
-│   └── ...
-└── README.md
+|   |   ├── ui/
+|   |   |   ├── Button.tsx
+|   |   |   ├── Input.tsx
+|   |   |   ├── Label.tsx
+|   |   |   ├── Pagination.tsx
+|   |   |   ├── RatingEstrellas.tsx
+|   |   |   ├── Select.tsx
+|   |   |   └── Textarea.tsx
+|   |   └── views/
+|   |       ├── AdminPage.tsx
+|   |       ├── CarritoPage.tsx
+|   |       ├── ContactoPage.tsx
+|   |       ├── HomePage.tsx
+|   |       ├── LoginPage.tsx
+|   |       ├── ProductosByIdPage.tsx
+|   |       ├── ProductosPage.tsx
+|   |       └── RegisterPage.tsx
+|   ├── context/
+|   |   ├── authFunction.ts
+|   |   ├── cartFunction.ts
+|   |   ├── PedidosContext.tsx
+|   |   ├── ToastContext.tsx
+|   |   └── UserContext.tsx
+|   ├── controllers/
+|   |   ├── carrito.ts
+|   |   ├── login.ts
+|   |   ├── pedidos.ts
+|   |   ├── phones.ts
+|   |   └── user.ts
+|   ├── lib/
+|   |   ├── db.ts
+|   |   └── mailer.ts
+|   ├── models/
+|   |   ├── index.ts
+|   |   ├── pedidos.ts
+|   |   ├── phones.ts
+|   |   └── user.ts
+|   ├── services/
+|   |   ├── carritoService.ts
+|   |   ├── pedidoService.ts
+|   |   ├── phonesService.ts
+|   |   └── userService.ts
+|   └── types/
+|       ├── pedidos.ts
+|       ├── phones.ts
+|       └── user.ts
+├── .gitignore
+├── README.md
+├── eslint.config.mjs
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+└── tsconfig.json
 ```
 
 ## Autor

@@ -5,7 +5,7 @@ import { Phone } from "@/src/types/phones";
 import Link from "next/link";
 
 import { useEffect, useState } from "react";
-import { Card, CardContent } from "../Card";
+import { Card, CardContent } from "../display/Card";
 import Image from "next/image";
 
 const Relacionados = ({ marca }: { marca: string }) => {

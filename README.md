@@ -4,8 +4,9 @@ Proyecto final ITBA - E-commerce de muebles premium
 
 ## Descripción
 
-Hermanos Jota es una aplicación web para la venta de muebles premium, desarrollada como proyecto para ITBA. Permite explorar productos, ver detalles, filtrar por categoría y precio, y simular compras.
-Se pueden crear usuarios y dependiendo de su rol asignado tiene diferentes acciones posibles: El usuario por defecto se crea con un rol **_user_** el cual es necesario para poder acceder al carrito y realizar tus compras. Por otra lado tenemos los usuarios de rol **_admin_** el cual nos permite controlar el stock de productos(agregar, editar o eliminar un producto) y a su vez nos permite adminstrar los usuarios.
+Ecommerce Phones es una aplicación web de una tienda de ventas y compras de celulares de gama baja, media y alta.
+Aquí puedes encontrar diferentes modelos de celuares de 7 marcas distintas que van desde Realme hasta Apple o Samsung. Como usuario puedes filtrar tu búsqueda por marca, precio, memoria, capacidad de la batería, etc; agregarlos al carrito de compras y hasta realizar una simulación de pedido.
+Si posees el rol de adminstrador vas a tener la capicidad de gestionar el stock de productos, los pedidos e incluso agregar, modficar(cantidad en stock) o eliminar los celulares que se encuentran en el inventario.
 
 ## Tecnologías
 
@@ -29,6 +30,20 @@ Se pueden crear usuarios y dependiendo de su rol asignado tiene diferentes accio
    npm install
    ```
 
+## Archivo .env
+
+```
+ <!-- Tienes que agregar este archivo para que la app funcione -->
+
+  MONGODB_URI= tu-base-de-datos-Mongo
+
+  SECRET = una-clave-secreta-para-bycrpt
+
+ <!-- Para que funcione mailer -->
+  EMAIL_USER= user@gmail.com
+  EMAIL_PASS= emailpassowrd
+```
+
 ## Ejecución
 
 - Inicia la app:
@@ -51,6 +66,46 @@ Se pueden crear usuarios y dependiendo de su rol asignado tiene diferentes accio
 - **Autenticación:** JWT para login seguro y persistencia de sesión.
 - **Carrito de compras:** CRUD completa, sincronización entre el frontend y backend, simulación de compra + envio de email de confirmación de pedido.
 - **Rol admin:** si posees el rol de amdinistrador, puedes: ver los pedidos que se realizaron y modificar su estatus, y también ver los productos que tenes, crear uno nuevo, modificar la cantidad en stock o eliminar uno.
+
+## Endpoints
+
+- Vistas frontend:
+  1. "/": vista home.
+  2. "/productos": listado de productos.
+  3. "/productos/:id": producto detallado.
+  4. "/carrito": carrito de compras.
+  5. "/admin": vista del panel de administrador.
+  6. "/login": vista para logearse.
+  7. "/register": página para crear usuario
+
+- Endpoint del backend:
+  1. "/api/carrito/:id":
+     - GET ──> Obtener el carrito de un usario en particular.
+     - DELETE ──> Limpiar el carrito.
+  2. "/api/carrito/:id/:productoId":
+     - DELETE ──> Eliminar item del carrito.
+     - PUT ──> Modificar cantidad de un item.
+  3. "/api/login":
+     - POST ──> Login de usuarios.
+  4. "/api/pedidos":
+     - GET ──> Obtener pedidos.
+     - POST ──> Realizar un nuevo pedido.
+  5. "/api/pedidos/:id":
+     - PUT ──> Editar el status de un pedido.
+  6. "/api/phones":
+     - GET ──> Obtener listado de smartphones.
+     - POST ──> Agregar nuevo smartphone al listado.
+  7. "/api/phones/:id":
+     - GET ──> Obtener un celular.
+  8. "/api/phones/destacados":
+     - GET ──> Trae tres productos destacados de las marca Apple, Samsung y Xiaomi.
+  9. "/api/phones/relacionados/:brand":
+     - GET ──> Trae tres productos relacionas a la marca del celular que se encuentra en la vista /producto/:id.
+  10. "/api/user":
+      - GET ──> Obtener lista de usuarios.
+      - POST ──> Crear nuevo usuario.
+  11. "/api/user/:id":
+      - GET ──> Obtener usuario.
 
 ## Estructura de carpetas
 
@@ -183,3 +238,5 @@ ecommerce-phones/
 ## Autor
 
 - Fausto Leal
+- [Perfil de Github](https://github.com/faustoleal)
+- [Perfil de LinkedIn](https://www.linkedin.com/in/fausto-leal-/)

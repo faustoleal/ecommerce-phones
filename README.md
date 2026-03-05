@@ -76,7 +76,7 @@ Si posees el rol de adminstrador vas a tener la capicidad de gestionar el stock 
   4. "/carrito": carrito de compras.
   5. "/admin": vista del panel de administrador.
   6. "/login": vista para logearse.
-  7. "/register": página para crear usuario
+  7. "/register": página para crear usuario.
 
 - Endpoint del backend:
   1. "/api/carrito/:id":

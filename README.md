@@ -4,9 +4,9 @@ Proyecto final ITBA - E-commerce de muebles premium
 
 ## Descripción
 
-Ecommerce Phones es una aplicación web de una tienda de ventas y compras de celulares de gama baja, media y alta.
+Ecommerce Phones es una aplicación web de una tienda de ventas y compras de smartphones de gama baja, media y alta.
 Aquí puedes encontrar diferentes modelos de celuares de 7 marcas distintas que van desde Realme hasta Apple o Samsung. Como usuario puedes filtrar tu búsqueda por marca, precio, memoria, capacidad de la batería, etc; agregarlos al carrito de compras y hasta realizar una simulación de pedido.
-Si posees el rol de adminstrador vas a tener la capicidad de gestionar el stock de productos, los pedidos e incluso agregar, modficar(cantidad en stock) o eliminar los celulares que se encuentran en el inventario.
+Si posees el rol de administrador vas a tener la capacidad de gestionar el stock de productos, los pedidos e incluso agregar, modficar(cantidad en stock) o eliminar los celulares que se encuentran en el inventario.
 
 ## Tecnologías
 

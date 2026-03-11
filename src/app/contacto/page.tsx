@@ -4,7 +4,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contacto | Ecommerce Phones",
   description:
-    "Descubre la mejor selección de celulares Apple, Samsung, Xiaomi y más en Ecommerce Phones. Envíos rápidos y garantía oficial.",
+    "¿Necesitas ayuda con tu compra de smartphones? En Ecommerce Phones puedes contactarnos fácilmente para soporte, consultas sobre productos y asistencia personalizada. Estamos aquí para responder tus dudas y brindarte la mejor experiencia de compra en teléfonos móviles.",
 };
 
 export default function Contacto() {

@@ -4,7 +4,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Panel de administrador | Ecommerce Phones",
   description:
-    "Descubre la mejor selección de celulares Apple, Samsung, Xiaomi y más en Ecommerce Phones. Envíos rápidos y garantía oficial.",
+    "Accede al panel de administración de Ecommerce Phones. Gestiona productos, controla inventario, revisa pedidos y administra usuarios con herramientas seguras y eficientes para mantener tu tienda online siempre actualizada.",
 };
 
 export default function Admin() {

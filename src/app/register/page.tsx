@@ -4,7 +4,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Crear cuenta | Ecommerce Phones",
   description:
-    "Accede a tu cuenta en Ecommerce Phones para gestionar tus pedidos, revisar tu historial de compras y disfrutar de una experiencia personalizada en la compra de smartphones. Inicia sesión de forma rápida y segura.",
+    "Crea tu cuenta en Ecommerce Phones y disfruta de una experiencia de compra personalizada. Regístrate fácilmente para gestionar pedidos, guardar tus smartphones favoritos y acceder a ofertas exclusivas de manera segura.",
 };
 
 export default function Register() {

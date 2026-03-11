@@ -1,9 +1,6 @@
-import Button from "../ui/Button";
-import { Card, CardContent, CardHeader, CardTitle } from "../display/Card";
-import Input from "../ui/Input";
-import Label from "../ui/Label";
-import Textaerea from "../ui/Textarea";
-import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Card, CardContent } from "../display/Card";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import ContactForm from "../forms/ContactForm";
 
 const ContactoPage = () => {
   return (
@@ -99,74 +96,7 @@ const ContactoPage = () => {
           </section>
 
           {/* Formulario */}
-          <div className="lg:col-span-2">
-            <Card className="border border-border">
-              <CardHeader>
-                <CardTitle>Envíanos un mensaje</CardTitle>
-              </CardHeader>
-              <CardContent className="px-6">
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="font-medium">
-                        Nombre completo:
-                      </Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        placeholder="John Doe"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="font-medium">
-                        Email:
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="johndoe@example.com"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="telefono" className="font-medium">
-                      Teléfono:
-                    </Label>
-                    <Input
-                      id="telefono"
-                      type="tel"
-                      placeholder="+54 9 011-12345678"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="mensaje" className="font-medium">
-                      Mensaje
-                    </Label>
-                    <Textaerea
-                      id="mensaje"
-                      placeholder="Escribe tu mensaje aquí..."
-                      rows={6}
-                      required
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-[#6366F1] hover:bg-[#8B5CF6] text-white h-10 rounded-md px-6"
-                  >
-                    <Send className="mr-2 h-5 w-5" />
-                    Enviar mensaje
-                  </Button>
-
-                  <p className="text-sm text-muted-foreground text-center">
-                    Te responderemos dentro de las próximas 24 horas
-                  </p>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
+          <ContactForm />
         </div>
       </div>
     </div>

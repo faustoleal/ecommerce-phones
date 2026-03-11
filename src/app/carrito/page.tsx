@@ -4,7 +4,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Mi carrito de compras | Ecommerce Phones",
   description:
-    "Descubre la mejor selección de celulares Apple, Samsung, Xiaomi y más en Ecommerce Phones. Envíos rápidos y garantía oficial.",
+    "Revisa tu carrito de compras en Ecommerce Phones. Confirma tus smartphones seleccionados, ajusta cantidades y procede al pago de forma rápida y segura. Disfruta de una experiencia de compra sencilla y confiable.",
 };
 
 export default function Carrito() {

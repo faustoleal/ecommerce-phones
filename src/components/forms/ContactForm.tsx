@@ -45,13 +45,12 @@ const ContactForm = () => {
         title: "Error",
         description: errMsg,
       });
-
+    } finally {
+      setLoading(false);
       setName("");
       setEmail("");
       setPhone("");
       setBody("");
-    } finally {
-      setLoading(false);
     }
   }
 

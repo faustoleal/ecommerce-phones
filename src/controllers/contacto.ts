@@ -11,9 +11,9 @@ type Consulta = {
 export async function sendConsulta(consulta: Consulta) {
   try {
     await transporter.sendMail({
-      from: consulta.email,
+      from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
-      subject: `Consulta de #${consulta.name}`,
+      subject: `Consulta de ${consulta.name}`,
       html: `
       <h1>El cliente ${consulta.name} tiene la siguiente consulta:</h1>
       <p>${consulta.body}</p>

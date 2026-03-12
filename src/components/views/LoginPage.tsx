@@ -39,10 +39,10 @@ const LoginPage = () => {
               </p>
               <div className="space-y-1 text-sm text-muted-foreground">
                 <p>
-                  <strong>Usuario:</strong> user@example.com / user123
+                  <strong>Usuario:</strong> user1@example.com / user123
                 </p>
                 <p>
-                  <strong>Admin:</strong> admin@cellphones.com / admin123
+                  <strong>Admin:</strong> admin1@example.com / admin123
                 </p>
               </div>
             </div>

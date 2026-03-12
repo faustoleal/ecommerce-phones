@@ -116,6 +116,7 @@ const CarritoPage = () => {
         title: "Éxito:",
         description: "Tu pedido se ha realizado correctamente.",
       });
+      await clearCart();
     } catch (err: unknown) {
       let errMsg = "No se pudo realizar el pedido";
 

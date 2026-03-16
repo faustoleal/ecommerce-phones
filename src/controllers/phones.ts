@@ -13,20 +13,28 @@ export async function getPhones(req: Request) {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const queryMap: Record<string, (val: string) => any> = {
-      minPrice: (val) => ({ price: { $gte: Number(val) } }),
+      brand: (val) => {
+        const brands = val.split(",").map((b) => b.trim());
+        return { brand: { $in: brands } };
+      },
       maxPrice: (val) => ({ price: { $lte: Number(val) } }),
-      internalMemory: (val) => ({ internal_memory: { $gte: Number(val) } }),
+      fastCharging: (val) => ({ fast_charging_available: val === "true" }),
+      ramCapacity: (val) => ({ ram_capacity: val }),
+      primaryCameraRear: (val) => ({ primary_camera_rear: val }),
+      primaryCameraFront: (val) => ({ primary_camera_front: val }),
+      extendedMemory: (val) => ({ extended_memory_available: val === "true" }),
+      internalMemory: (val) => ({ internal_memory: val }),
       has5g: (val) => ({ has_5g: val === "true" }),
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const filters: any = {};
+    const filters: Record<string, (val: string) => any> = {};
 
     searchParams.forEach((value, key) => {
+      if (!value || value === "false") return;
       if (queryMap[key]) {
         const newFilter = queryMap[key](value);
 
-        // Si ya existe el campo en filters, mergea operadores
         Object.keys(newFilter).forEach((field) => {
           if (filters[field]) {
             filters[field] = { ...filters[field], ...newFilter[field] };

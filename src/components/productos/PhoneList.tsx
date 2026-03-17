@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { SetStateAction } from "react";
 import { Card, CardContent } from "../display/Card";
-import { ProductosState } from "../views/AdminPage";
 import Pagination from "../ui/Pagination";
+import { ProductosState } from "../views/ProductosPage";
 
 type PhoneListProps = {
   productos: ProductosState;

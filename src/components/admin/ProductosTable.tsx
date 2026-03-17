@@ -19,8 +19,8 @@ import Image from "next/image";
 import Button from "../ui/Button";
 import Link from "next/link";
 import { Eye } from "lucide-react";
-import { ProductosState } from "../views/AdminPage";
 import Pagination from "../ui/Pagination";
+import { ProductosState } from "../views/ProductosPage";
 
 interface ProductosTableProps {
   productos: ProductosState;

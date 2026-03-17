@@ -20,7 +20,7 @@ import {
 import Image from "next/image";
 import StatusSelect from "../admin/StatusSelect";
 
-export interface ProductosState {
+interface ProductosState {
   page: number;
   totalPages: number;
   totalPhones: number;

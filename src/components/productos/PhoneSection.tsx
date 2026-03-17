@@ -1,27 +1,15 @@
 "use client";
 
-import { fetchProductos } from "@/src/services/phonesService";
-import { useEffect, useState } from "react";
+import React, { SetStateAction } from "react";
 import PhoneList from "./PhoneList";
-import { ProductosState } from "../views/AdminPage";
+import { ProductosState } from "../views/ProductosPage";
 
-const PhoneSection = () => {
-  const [productos, setProductos] = useState<ProductosState>({
-    page: 0,
-    totalPages: 0,
-    totalPhones: 0,
-    products: [],
-  });
-  const [page, setPage] = useState<number>(1);
+type PhoneSectionProps = {
+  productos: ProductosState;
+  setPage: React.Dispatch<SetStateAction<number>>;
+};
 
-  useEffect(() => {
-    fetchProductos(page)
-      .then((data) => {
-        setProductos(data);
-      })
-      .catch((error) => console.log(error));
-  }, [page]);
-
+const PhoneSection: React.FC<PhoneSectionProps> = ({ productos, setPage }) => {
   return (
     <section className="lg:col-span-3 space-y-6">
       {productos.products.length > 0 ? (

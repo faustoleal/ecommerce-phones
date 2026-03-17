@@ -170,12 +170,7 @@ const AdminPage = () => {
           {selected === "productos" && (
             <ProductosTable productos={productos} setPage={setPage} />
           )}
-          {selected === "agregar" && (
-            <CreatePhoneForm
-              productos={productos.products}
-              setProductos={setProductos}
-            />
-          )}
+          {selected === "agregar" && <CreatePhoneForm />}
         </div>
 
         {/* Modal */}

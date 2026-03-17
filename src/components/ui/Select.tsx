@@ -68,8 +68,8 @@ const SelectItem = ({
   isSelect,
 }: {
   className?: string;
-  children: React.ReactNode;
-  isSelect: boolean;
+  children?: React.ReactNode;
+  isSelect?: boolean;
 }) => {
   return (
     <li

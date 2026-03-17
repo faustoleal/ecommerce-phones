@@ -5,10 +5,10 @@ import { Card, CardContent } from "../display/Card";
 import Pagination from "../ui/Pagination";
 import { ProductosState } from "../views/ProductosPage";
 
-type PhoneListProps = {
+interface PhoneListProps {
   productos: ProductosState;
   setPage: React.Dispatch<SetStateAction<number>>;
-};
+}
 
 const PhoneList: React.FC<PhoneListProps> = ({ productos, setPage }) => {
   return (

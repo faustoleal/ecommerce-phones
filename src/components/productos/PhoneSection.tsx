@@ -4,10 +4,10 @@ import React, { SetStateAction } from "react";
 import PhoneList from "./PhoneList";
 import { ProductosState } from "../views/ProductosPage";
 
-type PhoneSectionProps = {
+interface PhoneSectionProps {
   productos: ProductosState;
   setPage: React.Dispatch<SetStateAction<number>>;
-};
+}
 
 const PhoneSection: React.FC<PhoneSectionProps> = ({ productos, setPage }) => {
   return (

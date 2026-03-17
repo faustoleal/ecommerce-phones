@@ -1,7 +1,7 @@
 "use client";
 
-import { Brands, NewProduct, Os, Phone, Processor } from "@/src/types/phones";
-import React, { SetStateAction, useState } from "react";
+import { Brands, NewProduct, Os, Processor } from "@/src/types/phones";
+import React, { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -10,14 +10,8 @@ import {
   CardContent,
 } from "../display/Card";
 import Button from "../ui/Button";
-import { ProductosState } from "../views/AdminPage";
 import { useToast } from "@/src/context/ToastContext";
 import { crearProducto } from "@/src/services/phonesService";
-
-interface CreatePhoneFormProps {
-  productos: Phone[];
-  setProductos: React.Dispatch<SetStateAction<ProductosState>>;
-}
 
 interface PhoneForm {
   model: string;
@@ -73,10 +67,7 @@ const initialForm: PhoneForm = {
   has_ir_blaster: "true",
 };
 
-const CreatePhoneForm: React.FC<CreatePhoneFormProps> = ({
-  productos,
-  setProductos,
-}) => {
+const CreatePhoneForm = () => {
   const [form, setForm] = useState<PhoneForm>(initialForm);
   const [loading, setLoading] = useState<boolean>(false);
 

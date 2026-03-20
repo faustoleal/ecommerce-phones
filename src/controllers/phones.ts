@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { PhonesModel } from "../models";
 import { NewProduct } from "../types/phones";
 
+type Range = {
+  min: number;
+  max: number;
+};
+
 export async function getPhones(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -20,8 +25,16 @@ export async function getPhones(req: Request) {
       maxPrice: (val) => ({ price: { $lte: Number(val) } }),
       fastCharging: (val) => ({ fast_charging_available: val === "true" }),
       ramCapacity: (val) => ({ ram_capacity: val }),
-      primaryCameraRear: (val) => ({ primary_camera_rear: val }),
-      primaryCameraFront: (val) => ({ primary_camera_front: val }),
+      primaryCameraRear: (val) => {
+        const [min, max] = val.split(",").map(Number);
+        const range: Range = { min, max };
+        return { primary_camera_rear: { $gte: range.min, $lte: range.max } };
+      },
+      primaryCameraFront: (val) => {
+        const [min, max] = val.split(",").map(Number);
+        const range: Range = { min, max };
+        return { primary_camera_front: { $gte: range.min, $lte: range.max } };
+      },
       extendedMemory: (val) => ({ extended_memory_available: val === "true" }),
       internalMemory: (val) => ({ internal_memory: val }),
       has5g: (val) => ({ has_5g: val === "true" }),

@@ -54,6 +54,7 @@ const PhoneList: React.FC<PhoneListProps> = ({ productos, setPage }) => {
         page={productos.page}
         totalPages={productos.totalPages}
         totalPhones={productos.totalPhones}
+        totalFilter={productos.totalFilter}
         setPage={setPage}
       />
     </>

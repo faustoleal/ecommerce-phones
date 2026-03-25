@@ -96,6 +96,7 @@ const ProductosTable: React.FC<ProductosTableProps> = ({
             page={productos.page}
             totalPages={productos.totalPages}
             totalPhones={productos.totalPhones}
+            totalFilter={productos.totalFilter}
             setPage={setPage}
           />
         </CardContent>

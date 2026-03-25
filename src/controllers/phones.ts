@@ -58,6 +58,8 @@ export async function getPhones(req: Request) {
       }
     });
 
+    const totalFilterPhones = await PhonesModel.find(filters);
+
     const products = await PhonesModel.find(filters).skip(skip).limit(limit);
 
     const total = await PhonesModel.countDocuments();
@@ -70,7 +72,13 @@ export async function getPhones(req: Request) {
       );
     }
     return NextResponse.json(
-      { page, totalPages, totalPhones: total, products },
+      {
+        page,
+        totalPages,
+        totalPhones: total,
+        totalFilter: totalFilterPhones.length,
+        products,
+      },
       { status: 200 },
     );
   } catch (err) {

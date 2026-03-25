@@ -24,6 +24,7 @@ interface ProductosState {
   page: number;
   totalPages: number;
   totalPhones: number;
+  totalFilter: number;
   products: Phone[];
 }
 
@@ -33,6 +34,7 @@ const AdminPage = () => {
     page: 0,
     totalPages: 0,
     totalPhones: 0,
+    totalFilter: 0,
     products: [],
   });
   const [page, setPage] = useState<number>(1);

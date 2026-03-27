@@ -111,7 +111,9 @@ const AdminPage = () => {
                   <p className="text-sm text-muted-foreground mb-1">
                     Total Productos
                   </p>
-                  <p className="text-3xl font-medium text-[#8b5cf6]">630</p>
+                  <p className="text-3xl font-medium text-[#8b5cf6]">
+                    {productos.totalPhones}
+                  </p>
                 </div>
                 <div className="p-3 bg-[#06B6D4]/10 rounded-lg">
                   <Package className="h-6 w-6 text-[#8b5cf6]" />

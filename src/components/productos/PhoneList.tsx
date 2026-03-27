@@ -53,8 +53,7 @@ const PhoneList: React.FC<PhoneListProps> = ({ productos, setPage }) => {
       <Pagination
         page={productos.page}
         totalPages={productos.totalPages}
-        totalPhones={productos.totalPhones}
-        totalFilter={productos.totalFilter}
+        totalPhones={productos.totalFilter}
         setPage={setPage}
       />
     </>

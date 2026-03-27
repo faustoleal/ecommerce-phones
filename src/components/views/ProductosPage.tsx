@@ -38,19 +38,24 @@ const ProductosPage = () => {
   const [filters, setFilters] = useState<Filtros>({});
   const [page, setPage] = useState<number>(1);
 
-  const serializeFilters = (filters: Filtros): URLSearchParams => {
+  const serializeFilters = (
+    filters: Filtros,
+    page: number,
+  ): URLSearchParams => {
     const params = new URLSearchParams();
+
+    params.set("page", String(page));
 
     Object.entries(filters).forEach(([key, value]) => {
       if (value === undefined || value === null) return;
 
       if (Array.isArray(value)) {
-        params.append(key, value.join(","));
+        params.set(key, value.join(","));
       } else if (typeof value === "object") {
         const { min, max } = value as { min: number; max: number };
-        params.append(key, `${min},${max}`);
+        params.set(key, `${min},${max}`);
       } else {
-        params.append(key, String(value));
+        params.set(key, String(value));
       }
     });
 
@@ -58,8 +63,10 @@ const ProductosPage = () => {
   };
 
   useEffect(() => {
-    const params = serializeFilters(filters);
+    const params = serializeFilters(filters, page);
     const queryString = params.toString();
+
+    window.history.pushState({}, "", `?${queryString}`);
 
     fetchProductos(page, queryString)
       .then((data) => {

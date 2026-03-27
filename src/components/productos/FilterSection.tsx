@@ -44,8 +44,6 @@ const FilterSection: React.FC<FilterSectionProps> = ({
 }) => {
   const [open, setOpen] = useState<string | null>(null);
 
-  console.log(filters);
-
   const handleToggleOpen = (key: string) => {
     setOpen((prev) => (prev === key ? null : key));
   };

@@ -18,9 +18,9 @@ export async function getPhones(req: Request) {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const queryMap: Record<string, (val: string) => any> = {
-      brand: (val) => {
+      brands: (val) => {
         const brands = val.split(",").map((b) => b.trim());
-        return { brand: { $in: brands } };
+        return { brand_name: { $in: brands } };
       },
       maxPrice: (val) => ({ price: { $lte: Number(val) } }),
       fastCharging: (val) => ({ fast_charging_available: val === "true" }),
@@ -63,7 +63,7 @@ export async function getPhones(req: Request) {
     const products = await PhonesModel.find(filters).skip(skip).limit(limit);
 
     const total = await PhonesModel.countDocuments();
-    const totalPages = Math.ceil(total / limit);
+    const totalPages = Math.ceil(totalFilterPhones.length / limit);
 
     if (products.length === 0) {
       return NextResponse.json(

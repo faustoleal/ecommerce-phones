@@ -6,7 +6,6 @@ interface PaginationProps {
   page: number;
   totalPages: number;
   totalPhones: number;
-  totalFilter: number;
   setPage: React.Dispatch<SetStateAction<number>>;
 }
 
@@ -14,7 +13,6 @@ const Pagination: React.FC<PaginationProps> = ({
   page,
   totalPages,
   totalPhones,
-  totalFilter,
   setPage,
 }) => {
   return (

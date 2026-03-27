@@ -17,8 +17,8 @@ export async function fecthDestacados(): Promise<{
   return res.json();
 }
 
-export async function fetchProductos(page: number) {
-  const res = await fetch(`api/phones?page=${page}`, {
+export async function fetchProductos(page: number, queryString: string) {
+  const res = await fetch(`api/phones?page=${page}&${queryString}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
